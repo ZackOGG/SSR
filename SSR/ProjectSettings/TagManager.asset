@@ -3,7 +3,14 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
+  - JumpUpBox
+  - TurnOnColliderHitBox
+  - Platform
+  - Waypoints
+  - Ground
+  - JumpBox
   layers:
   - Default
   - TransparentFX
@@ -13,10 +20,10 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Ground
+  - Player
+  - NPC_Enemy
+  - NPC
   - 
   - 
   - 
