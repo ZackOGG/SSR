@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7e800fe8db0a3b45b0c0c7606a1a92d, type: 3}
+  m_Name: KIll Skelibobs
+  m_EditorClassIdentifier: 
+  quest:
+    questID: 1
+    questName: Kill Skeli Bobs
+    questObjectives:
+    - objectiveID: 1
+      questType: 1
+      amount: 0
+      amountToComplete: 5
+      Completed: 0
+    questCompleted: 0

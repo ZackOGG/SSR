@@ -17,6 +17,7 @@ namespace SS.Character
         [SerializeField] float jumpPower = 10f;
         [SerializeField] bool cantDie = false;
         [SerializeField] bool invulnerable = false;
+        [SerializeField] bool isPlayer = false;
         //[SerializeField] NPCFeelings feelingsToPlayer = NPCFeelings.Friendly;
         private float movementSpeed = 5f;
         private bool amIDead = false;
@@ -89,13 +90,18 @@ namespace SS.Character
         // Update is called once per frame
         void Update()
         {
-            if(health <= 0 && !cantDie)
+            if(health <= 0 && !cantDie && isPlayer)
             {
                 callingDeath(true);
                 amIDead = true;
+               
             }
 
-                       
+            if (health <= 0 && !cantDie && !isPlayer)
+            {
+                Die();
+            }
+
         }
 
         public void TakeDamage(int damage)

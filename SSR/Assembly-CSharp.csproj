@@ -63,20 +63,23 @@
   <ItemGroup>
     <Compile Include="Assets\_Core\Camera_Follow.cs" />
     <Compile Include="Assets\_Core\Utility.cs" />
+    <Compile Include="Assets\_UI\Dialogue\Character_Dialogue.cs" />
+    <Compile Include="Assets\_UI\Dialogue\Dialogue_Manager.cs" />
     <Compile Include="Assets\_UI\UI_Controller.cs" />
     <Compile Include="Assets\Characters\AI_Movement.cs" />
     <Compile Include="Assets\Characters\Animator_Controller.cs" />
     <Compile Include="Assets\Characters\BodyDamage.cs" />
     <Compile Include="Assets\Characters\Character_Stats.cs" />
-    <Compile Include="Assets\Characters\Enemy\AI_Brain.cs" />
-    <Compile Include="Assets\Characters\Enemy\AI_Combat_Standard.cs" />
-    <Compile Include="Assets\Characters\Enemy\JumpNeedDetector.cs" />
-    <Compile Include="Assets\Characters\Enemy\NPC_Waypoint.cs" />
+    <Compile Include="Assets\Characters\NPC\Enemy\AI_Brain.cs" />
+    <Compile Include="Assets\Characters\NPC\Enemy\AI_Combat_Standard.cs" />
+    <Compile Include="Assets\Characters\NPC\Enemy\JumpNeedDetector.cs" />
+    <Compile Include="Assets\Characters\NPC\Enemy\NPC_Waypoint.cs" />
     <Compile Include="Assets\Characters\Player\Combat_Controller.cs" />
     <Compile Include="Assets\Characters\Player\Jitter.cs" />
     <Compile Include="Assets\Characters\Player\JumpUpDetector.cs" />
     <Compile Include="Assets\Characters\Player\Land_Detector.cs" />
     <Compile Include="Assets\Characters\Player\Player_Movement_TwoDSS.cs" />
+    <Compile Include="Assets\Characters\Player_Relation.cs" />
     <Compile Include="Assets\Characters\Zarok\IceFloorDamage.cs" />
     <Compile Include="Assets\Characters\Zarok\Lightning_Shield_Controller.cs" />
     <Compile Include="Assets\Characters\Zarok\StartBossFight.cs" />
@@ -87,6 +90,9 @@
     <Compile Include="Assets\Magic\Ice\IceFloorMove.cs" />
     <Compile Include="Assets\Magic\Lightning\LightningSpin.cs" />
     <Compile Include="Assets\Mis\HordeSpawner.cs" />
+    <Compile Include="Assets\Systems\Quests\Quest.cs" />
+    <Compile Include="Assets\Systems\Quests\Quest_Jornal.cs" />
+    <Compile Include="Assets\Systems\Quests\QuestCounter.cs" />
     <Reference Include="Cinemachine">
       <HintPath>Z:/Software/Unity 2018.1.6.f1/Projects/SSR/SSR/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
     </Reference>
