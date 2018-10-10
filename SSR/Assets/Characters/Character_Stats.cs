@@ -49,6 +49,7 @@ namespace SS.Character
         private Animator_Controller animCon;
         private SpriteRenderer spriteRen;
         
+
         public Vector2 GetFacingDirection()
         {
             Vector2 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - this.transform.position;            
@@ -91,10 +92,12 @@ namespace SS.Character
         void Update()
         {
             if(health <= 0 && !cantDie && isPlayer)
+            {                
+                amIDead = true;               
+            }
+            if(health <= 0 && !cantDie)
             {
                 callingDeath(true);
-                amIDead = true;
-               
             }
 
             if (health <= 0 && !cantDie && !isPlayer)

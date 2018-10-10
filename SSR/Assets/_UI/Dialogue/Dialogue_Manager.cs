@@ -63,25 +63,21 @@ namespace SS.UI
 
         public void AnswerOnePressed()
         {
-            print("Answer One Pressed");
             currentDialogue.AnswerOnePressed();
         }
 
         public void AnswerTwoPressed()
         {
-            print("Answer Two Pressed");
             currentDialogue.AnswerTwoPressed();
         }
 
         public void AnswerThreePressed()
         {
-            print("Answer Three Pressed");
             currentDialogue.AnswerThreePressed();
         }
 
         public void AnswerFourPressed()
         {
-            print("Answer Four Pressed");
             currentDialogue.AnswerFourPressed();
         }
 

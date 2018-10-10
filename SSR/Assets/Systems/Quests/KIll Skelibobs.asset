@@ -16,8 +16,9 @@ MonoBehaviour:
     questName: Kill Skeli Bobs
     questObjectives:
     - objectiveID: 1
-      questType: 1
+      questType: 0
       amount: 0
       amountToComplete: 5
+      itemToHandIn: {fileID: 0}
       Completed: 0
     questCompleted: 0

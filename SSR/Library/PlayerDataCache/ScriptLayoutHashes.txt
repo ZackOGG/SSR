@@ -1,6 +1,6 @@
 WindowsStandalone
 PlayerPath?
-Z:/Software/Unity 2018.1.6.f1/Built/SSR/QuestDemo_1/QuestDemo_1.exe
+Z:/Software/Unity 2018.1.6.f1/Built/SSR/SSR_QuestandInventoryDemo_2/SSR_QuestandInventoryDemo2_Windows/SSR_QuestandInventoryDemo2_Windows.exe
 SceneListBegin?
 Assets/Scenes/Demo_Scene.unity
 SceneListEnd?
@@ -21,6 +21,7 @@ ff05dcdf90651c3d98a9cad3df5e471e UnityEngine.Timeline.dll:UnityEngine.Timeline.C
 607d64d2c4bc76ac9876e6f7b9cc7edf UnityEngine.Timeline.dll:UnityEngine.Timeline.TimelineAsset
 55a59f23b848f864703966bf575d4c68 Assembly-CSharp.dll:.Door_Controller
 4c75752238fd236ce350bb4f9dc2936d Cinemachine.dll:Cinemachine.CinemachineFollowZoom
+a6022a0c018ddb6a5552e69e61fe22fb Assembly-CSharp.dll:.UI_Inventory_Manager
 5d66aa2aec870dd80f3e5bfc8dff6c20 Cinemachine.dll:Cinemachine.CinemachineFixedSignal
 7b9ac24ffdf0dfedc7d020cbf229e955 Assembly-CSharp.dll:SS.UI.Dialogue_Manager
 7d9f0022fc83b7438f746d6e187818bf Cinemachine.dll:Cinemachine.CinemachineCollisionImpulseSource
@@ -56,7 +57,7 @@ c63db43c730fa2cbb8ca07de15898cb6 UnityEngine.UI.dll:UnityEngine.UI.Toggle
 f61c0793411f10cf5fbfa1473fef5ef2 UnityEngine.UI.dll:UnityEngine.UI.ToggleGroup
 86d36c43c53541d667100dc90b89cfba UnityEngine.UI.dll:UnityEngine.EventSystems.TouchInputModule
 1b8c02d0aa82fbf036a2b9b2d713eec3 UnityEngine.UI.dll:UnityEngine.UI.VerticalLayoutGroup
-0fbcdff43d64c7fcf4d69f2ad44513e0 Assembly-CSharp.dll:SS.Camera_UI.UI_Controller
+2a7e0e975656f63f3eccabb0a98c9666 Assembly-CSharp.dll:SS.Camera_UI.UI_Controller
 a35dc9cca2faebc5f5f1aeb9e8e47bbe UnityEngine.UI.dll:UnityEngine.UI.AspectRatioFitter
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.UI.dll:UnityEngine.EventSystems.BaseInput
 49cd62a578efc0a599b810a2b66cd49c UnityEngine.UI.dll:UnityEngine.UI.Button
@@ -93,6 +94,7 @@ f61c0793411f10cf5fbfa1473fef5ef2 UnityEngine.UI.dll:UnityEngine.UI.ToggleGroup
 ee77a3dbeba6278eff4bc4bb4a1ca647 Cinemachine.dll:Cinemachine.CinemachineStoryboard
 6a037547afb7324afcc1c51825f7027f Assembly-CSharp.dll:SS.AI.AI_Brain
 92e55deb11411194fba1fa7759804ebf Assembly-CSharp.dll:SS.Character.Character_Stats
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Inventory_Slot
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
 cf455f7a806648c6ed4c7d3e3f8a0e03 UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationTrack
 13bdb7c23815c33a33b37b0ba8dd39be UnityEngine.Timeline.dll:UnityEngine.Timeline.AnimationPlayableAsset
@@ -142,13 +144,14 @@ d480d198bb3f5c2733bebdd922315a66 Assembly-CSharp.dll:SS.Camera_UI.Camera_Follow
 e24664d92b03574beaccc10e189d38d4 Cinemachine.dll:Cinemachine.CinemachineOrbitalTransposer
 18750e0d26218f2f6a2b3b904c96ee2e Cinemachine.dll:Cinemachine.CinemachineTriggerAction
 8da2b79d0ce814b922898883855c1c99 Cinemachine.dll:Cinemachine.CinemachineComposer
-e6a6a1e63e7e61bd183ab354e1250e5f Assembly-CSharp.dll:SS.UI.Character_Dialogue
+bf6a521482eb54c2d4ce9fde4034c692 Assembly-CSharp.dll:SS.UI.Character_Dialogue
 43bfbcf06cd2615bb4aa00a27c18d889 Assembly-CSharp.dll:SS.Character.Player_Movement_TwoDSS
 253aa7c97d0743cc9b91d5116db69272 Cinemachine.dll:Cinemachine.CinemachineDollyCart
 c3b726e1ef77ecefcf78c4586a6bf32e Cinemachine.dll:Cinemachine.CinemachineTrackedDolly
 68cd3e909eaeb85e75650709da87bcf2 Assembly-CSharp.dll:SS.AI.AI_Movement
 05524b8f659e7bfe5756d1335fec24ba Cinemachine.dll:Cinemachine.CinemachinePipeline
 1d0ed45a65af4d08065a79ace88b43fc Cinemachine.dll:Cinemachine.CinemachinePath
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.InventorySlotIcon
 166f2fb08a5bd8e5be94b11ac3fce237 Cinemachine.dll:Cinemachine.CinemachineTargetGroup
 01871d49a9abb3105a831dff099ec768 Cinemachine.dll:Cinemachine.CinemachineTransposer
 fc1e0f4d8439d9928083474691511a13 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
@@ -176,7 +179,7 @@ c7c3a3d1b3dfc3402bfee74c493a06c1 Cinemachine.dll:Cinemachine.CinemachineBlendLis
 60a6e9979a3e94bf6683e4d26c97e46b Assembly-CSharp.dll:SS.Character.Combat_Controller
 2b53fa6d39b32adc4584159ff99b1565 Cinemachine.dll:.CinemachineTouchInputMapper
 3c2a78586c3bce945ee1c5f76c46095c Assembly-CSharp.dll:.Lightning_Shield_Controller
-c63608b75f83c4f5ab6677049189da06 Assembly-CSharp.dll:SS.Quests.QuestCounter
+5c4f3c4e830c36862a09e0c4422c5295 Assembly-CSharp.dll:SS.Quests.QuestCounter
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.Callbacks.PlayModeRunnerCallback
 f02726adeff0a3ec5905565234b372da UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.PlaymodeTestsController
 64eb32cc721b1cc68a91ed57461e188c UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.Callbacks.RemoteTestResultSender
@@ -186,7 +189,7 @@ e0f7ffd5d5c2abe4b2e16569a21163da UnityEngine.GoogleAudioSpatializer.dll:UnityEng
 67a5f2c97205d2e41a8ed7c7ce898f6e UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioSoundfieldExtension
 67a5f2c97205d2e41a8ed7c7ce898f6e UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioSourceExtension
 bf9f20c8bfc50db28e10f16d055e0e25 Assembly-CSharp.dll:SS.AI.NPC_Waypoint
-9be39fdb7469a9584e7fa2972218a56e Assembly-CSharp.dll:SS.Quests.Quest_Jornal
+9c8527922836f6c14618c009aec4ec30 Assembly-CSharp.dll:SS.Quests.Quest_Jornal
 9e0ef5bf862444b5dc48b5a99554ce7c UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioListenerExtension
 e0f7ffd5d5c2abe4b2e16569a21163da UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioRoom
 67a5f2c97205d2e41a8ed7c7ce898f6e UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioSoundfieldExtension
@@ -204,9 +207,12 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.Spa
 9de3a22eca9aefadba2d10d5987cefe3 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
 f739fe68956c7babcc274f024cbc4a87 Cinemachine.dll:Cinemachine.CinemachineSmoothPath
 05524b8f659e7bfe5756d1335fec24ba Cinemachine.dll:Cinemachine.CinemachineHardLookAt
+22899e503d60b991bbe4e96a07c022cb Assembly-CSharp.dll:SS.Equipment.Inventory
+aa13b12bbbcce6f5ef801ea235ff16d5 Assembly-CSharp.dll:SS.Equipment.Item
 cdddf0fd55dc853c6e39ca230956aabd Assembly-CSharp.dll:.Player_Relation
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Follow_Mouse
 8849f4421c560ca176998f8585b1741f Assembly-CSharp.dll:SS.Equipment.Weapons
-f8ae9a61e13a78c74dd9f896ee4b0006 Assembly-CSharp.dll:SS.Quests.Quest
+b07b3e34a25d7e10485242031870eb71 Assembly-CSharp.dll:SS.Quests.Quest
 94410a9608755481e08622a005a52700 Assembly-CSharp.dll:SS.AI.AI_Combat_Standard
 59491122521a69641d7305587f55faaa Cinemachine.dll:Cinemachine.CinemachineBrain
 37e2aaca8a4a0178c5588693bdc5de69 Assembly-CSharp.dll:RPG.Systems.HordeSpawner

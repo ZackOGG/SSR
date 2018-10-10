@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SS.Equipment;
 
 namespace SS.Quests
 {
@@ -10,47 +11,66 @@ namespace SS.Quests
         [SerializeField] List<QuestContence> questProgress;
         //[SerializeField] QuestContence testQuestTwo;
 
+        private Inventory playersInventory;
+
+        private void Start()
+        {
+            SetRefrences();
+        }
+        private void SetRefrences()
+        {
+            playersInventory = this.GetComponent<Inventory>();
+        }
 
         public void AddNewQuest(Quest newQuest)
-        {
+        {            
             questList.Add(newQuest);
             CreateQuestProgressData(newQuest);
+            UpdateItemQuests();
+            UpdateHuntQuests(null, -1, newQuest);
         }
 
         public void RemoveQuest(Quest finishedQuest)
         {
+            questProgress.Remove(questProgress[FindQuestLocation(finishedQuest)]);
             questList.Remove(finishedQuest);
+            
         }
         private void CreateQuestProgressData(Quest newQuest)
         {
             Quest questClone = Instantiate(newQuest);
             questProgress.Add(questClone.GetQuestContence());
         }
-        public void UpdateQuest(QuestCounter questCounter, int amount)
+        public void UpdateHuntQuests(QuestCounter questCounter, int amount, Quest newQuest) //(HUNT QUESTS) Check to see if the objectives are met and if they all are the set quest complete 
         {
-            foreach(Quest quest in questList)
+            if (questCounter != null)
             {
-                if(quest.GetQuestContence().questID == questCounter.GetQuestID())
+                foreach (Quest quest in questList)
                 {
-                    foreach(QuestObjectives qO in quest.GetQuestContence().questObjectives)
+                    if (quest.GetQuestContence().questID == questCounter.GetQuestID())
                     {
-                        if (qO.objectiveID == questCounter.GetQuestObjectiveID())
+                        foreach (QuestObjectives qO in quest.GetQuestContence().questObjectives)
                         {
-                            int questObjectiveID = questCounter.GetQuestObjectiveID();
-                            print(questProgress[0].questObjectives[questObjectiveID-1].amount);
-                            questProgress[FindQuestLocation(quest)].questObjectives[questObjectiveID - 1].amount += questCounter.GetAmount();
-                            print(questProgress[0].questObjectives[questObjectiveID - 1].amount);
+                            if (qO.objectiveID == questCounter.GetQuestObjectiveID())
+                            {
+                                int questObjectiveID = questCounter.GetQuestObjectiveID();
+                                questProgress[FindQuestLocation(quest)].questObjectives[questObjectiveID - 1].amount += questCounter.GetAmount();
 
-                            IsQuestQbjectiveComplete(quest, questObjectiveID);
-                            IsQuestComplete(quest);
-                            
+                                IsQuestQbjectiveComplete(quest, questObjectiveID);
+                            }
+
                         }
-                        
                     }
+
+                    IsQuestComplete(quest);
                 }
             }
+            else
+            {
+                questProgress[FindQuestLocation(newQuest)].CheckQuestCompleted();
+            }
         }
-        private int FindQuestLocation(Quest questionedQuest)
+        private int FindQuestLocation(Quest questionedQuest) //Returns a number for the array of the quest progress that matches the order of the questlist
         {
             int questNum = 0;
             foreach(Quest theQuest in questList)
@@ -76,7 +96,7 @@ namespace SS.Quests
             {
                 if(questObj.Completed == false)
                 {
-                    
+                    questProgress[theQuestNumber].questCompleted = false;
                     return false;
                 }                
 
@@ -96,11 +116,47 @@ namespace SS.Quests
                 }
                 else
                 {
+                    questProgress[FindQuestLocation(questioned)].questObjectives[qObjectiveID - 1].Completed = false;
                     return false;
                 }
             }
             Debug.LogError("Unexpected fallout of loop");
             return false;
+        }
+        public void UpdateItemQuests()
+        {
+            foreach (Quest theQuestCon in questList)
+            {
+                
+                //Find which quest is theQuestCon then get that array and then check the questProgress[theArray]
+                foreach(QuestObjectives theQuestObj in questProgress[FindQuestLocation(theQuestCon)].questObjectives)
+                {
+                    if(theQuestObj.questType == QuestType.Aquire)
+                    {
+                        theQuestObj.amount = playersInventory.CheckAmountOfItemInBag(theQuestObj.itemToHandIn);
+                        IsQuestQbjectiveComplete(theQuestCon, theQuestObj.objectiveID);
+                        IsQuestComplete(theQuestCon);
+                    }               
+                }
+                
+            }
+            
+        }
+        public void ResetQuestData(Quest quest)
+        {            
+            foreach(Quest theQuest in questList)
+            {
+                if(theQuest == quest)
+                {
+                    print("RestingData");
+                    foreach (QuestObjectives qOb in theQuest.GetQuestObjectives())
+                    {
+                        qOb.amount = 0;
+                        qOb.Completed = false;
+                    }
+                    theQuest.GetQuestContence().SetQuestCompleted(false);
+                }
+            }
         }
     }
 }

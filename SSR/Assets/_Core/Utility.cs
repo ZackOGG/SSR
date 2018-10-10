@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using SS.Quests;
+using SS.Equipment;
 
 public enum Direction {Up, Down, Left, Right}
 public enum AlignmentToPlayer { Friendly, Neutral, Hostile}
-public enum QuestType { Fetch, Hunt, Gather}
+public enum QuestType {Hunt, Aquire}
 public enum NPCGiveOrTakeType {None, Quest, Item, takeQuest, TakeItem}
+public enum ItemType { Consumable}
 
 namespace SS.Quests
 {
@@ -19,14 +21,33 @@ namespace SS.Quests
         {
             questCompleted = newBool;
         }
+        public void CheckQuestCompleted()
+        {
+            foreach (QuestObjectives qO in questObjectives)
+            {
+                if (!(qO.amount >= qO.amountToComplete))
+                {
+                    Debug.Log("SETTING FALSE");
+                    SetQuestCompleted(false);
+                    return;
+                }
+                else
+                {
+                    qO.Completed = true;
+                }
+            }
+            Debug.Log("SETTING TURE");
+            SetQuestCompleted(true);
+        }
     }
     [System.Serializable]
-    public struct QuestObjectives
+    public class QuestObjectives
     {
         public int objectiveID;
         public QuestType questType;
         public int amount;
         public int amountToComplete;
+        public Item itemToHandIn;
         public bool Completed;
     }
 
@@ -48,6 +69,7 @@ public struct Sentence
     public int selfSwitchToSwitchTo;
     public NPCGiveOrTakeType giveOrTakeType;
     public Quest theQuestToGiveOrTake;
+    public Item theItemToGiveOrTake;
     public int questSuccessLocalID;
     public int questFailedLocalID;    
     public Response[] responces;

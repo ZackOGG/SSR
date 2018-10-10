@@ -69,7 +69,6 @@ namespace SS.Character
                 //ProcessCrouch();            
                 ProcessJump();
                 ProcessHalfJump();
-                ProcessStandardAttack();
                 ProcessFallThroughPlatform();
             }
             else
@@ -117,13 +116,6 @@ namespace SS.Character
             {
                 grounded = false;
                 rb.velocity = new Vector2(rb.velocity.x, (halfJumpPower));
-            }
-        }
-        private void ProcessStandardAttack()
-        {
-            if (Input.GetMouseButtonDown(0))
-            {
-                combatCon.Standard_Attack();
             }
         }
         private void ProcessFallThroughPlatform() // TODO Make this nicer

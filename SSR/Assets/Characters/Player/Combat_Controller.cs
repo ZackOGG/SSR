@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace SS.Character
 {
@@ -45,14 +46,16 @@ namespace SS.Character
 
         private void Update()
         {
-            attackSpeedTimer -= Time.deltaTime;    
+            
+            Standard_Attack();
         }
 
         // Update is called once per frame
         public void Standard_Attack()
         {
+            attackSpeedTimer -= Time.deltaTime;
             //Attack animation
-            if (attackSpeedTimer <= 0)
+            if (attackSpeedTimer <= 0 && Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
             {
                 animCon.AttackAnimation();
                 StartCoroutine("HitBoxDelay");

@@ -41,6 +41,8 @@ namespace SS.Camera_UI
         [Header("Player Profile Elements")]
         [SerializeField] GameObject playerProfileWindow;
 
+        [Header("Quest Journal Elements")]
+        [SerializeField] GameObject playerQuestJournalWindow;
 
         private Character_Stats playerStatCon;
         private int playerMaxHealth;

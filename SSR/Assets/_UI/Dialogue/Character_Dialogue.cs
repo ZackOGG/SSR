@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using SS.Quests;
+using SS.Equipment;
 
 namespace SS.UI
 {
@@ -16,6 +17,7 @@ namespace SS.UI
         private Dialogue_Manager dialogueManger;
         private bool talkingToThisNPC = false;
         private int currentDialougeState = 0;
+        private Inventory playersInventory;
 
         private void Start()
         {            
@@ -25,6 +27,7 @@ namespace SS.UI
         {
             dialogueManger = GameObject.Find("Dialogue Manager").GetComponent<Dialogue_Manager>();
             player = GameObject.FindGameObjectWithTag("Player");
+            playersInventory = player.GetComponent<Inventory>();
         }
 
         private void Update()
@@ -78,6 +81,16 @@ namespace SS.UI
                 theResponses++;
             }
             dialogueManger.EnableDisableBoxes(sentances[currentSelfSwitch].dialogue[theDialogueID].responces.Length);
+            if (sentances[currentSelfSwitch].dialogue[theDialogueID].giveOrTakeType == NPCGiveOrTakeType.Item) // Give item to player
+            {
+                playersInventory.AddItemToInventory(sentances[currentSelfSwitch].dialogue[theDialogueID].theItemToGiveOrTake, -1);
+
+                //TODO ADD IF BAG IS FULL SOMTHING EG DROP
+            }
+            if(sentances[currentSelfSwitch].dialogue[theDialogueID].giveOrTakeType == NPCGiveOrTakeType.TakeItem) //Take Item from player
+            {
+                playersInventory.RemoveItemFromInventory(sentances[currentSelfSwitch].dialogue[theDialogueID].theItemToGiveOrTake, -1);
+            }
             if (sentances[currentSelfSwitch].dialogue[theDialogueID].giveOrTakeType == NPCGiveOrTakeType.Quest) // Gives player a new quest
             {
                 player.GetComponent<Quest_Jornal>().AddNewQuest(sentances[currentSelfSwitch].dialogue[theDialogueID].theQuestToGiveOrTake);
@@ -87,13 +100,17 @@ namespace SS.UI
                 Quest_Jornal playerJournal = player.GetComponent<Quest_Jornal>();
                 if (playerJournal.IsQuestComplete(sentances[currentSelfSwitch].dialogue[theDialogueID].theQuestToGiveOrTake) == true)
                 {
-                    SetNPCWordsAndAnswers(sentances[currentDialougeState].dialogue[theDialogueID].questSuccessLocalID); //ERROR SELFSWITCH TO SOOn
+                    SetNPCWordsAndAnswers(sentances[currentDialougeState].dialogue[theDialogueID].questSuccessLocalID);
+                    playerJournal.ResetQuestData(sentances[currentSelfSwitch].dialogue[theDialogueID].theQuestToGiveOrTake);
+                    playerJournal.RemoveQuest(sentances[currentSelfSwitch].dialogue[theDialogueID].theQuestToGiveOrTake);
+                    
                 }
                 else
                 {
                     SetNPCWordsAndAnswers(sentances[currentDialougeState].dialogue[theDialogueID].questFailedLocalID);
                 }
             }
+            
             if (sentances[currentSelfSwitch].dialogue[theDialogueID].selfSwitchToSwitchTo > 0) // Checks to selfswitch
             {
                 currentSelfSwitch = sentances[currentSelfSwitch].dialogue[theDialogueID].selfSwitchToSwitchTo;
