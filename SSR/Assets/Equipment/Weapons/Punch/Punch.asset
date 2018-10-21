@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b74b38ee44b88de44b4c418a6e242fcf, type: 3}
+  m_Name: Punch
+  m_EditorClassIdentifier: 
+  hitBox: {fileID: 60684963409983698, guid: 82d4f507faca50045ad1e8150223d63b, type: 2}
+  thisItem: {fileID: 11400000, guid: b3e746fcd71c86546a8cbf1b8a63e772, type: 2}
+  damage: 0
+  attackSpeed: 2
+  idle: {fileID: 0}
+  walking: {fileID: 0}
+  attackOne: {fileID: 7400000, guid: dce0de58d0d97024fae9542fbfe7229f, type: 2}
+  attackType: 2

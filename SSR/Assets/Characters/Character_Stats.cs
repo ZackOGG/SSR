@@ -22,6 +22,9 @@ namespace SS.Character
         private float movementSpeed = 5f;
         private bool amIDead = false;
 
+        public delegate void Walking(bool amWalking);
+        public Walking amWalking;
+
         public delegate void KnockBack(float force, float duration, Vector3 direction);
         public KnockBack KnockingBack;
 
@@ -48,7 +51,7 @@ namespace SS.Character
         private Player_Movement_TwoDSS playerMovement;
         private Animator_Controller animCon;
         private SpriteRenderer spriteRen;
-        
+        private Vector2 lastWalkPos;
 
         public Vector2 GetFacingDirection()
         {
@@ -74,7 +77,9 @@ namespace SS.Character
         {
             SetRefrences();
             SetStartingStats();
-            
+            DetectWalking();
+
+
         }
         private void SetRefrences()
         {
@@ -152,7 +157,27 @@ namespace SS.Character
         }
         //============================
 
-
+        private void DetectWalking()
+        {
+            lastWalkPos = this.transform.position;
+            StartCoroutine("CheckWalking");
+        }
+        IEnumerator CheckWalking()
+        {
+            yield return new WaitForSeconds(0.1f);
+            Vector2 currentPos = this.transform.position;
+            if (currentPos == lastWalkPos)
+            {
+                walking = false;
+                amWalking(false);
+            }
+            else
+            {
+                walking = true;
+                amWalking(true);
+            }
+            DetectWalking();
+        }
 
     }
 }

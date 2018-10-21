@@ -6,7 +6,9 @@ public enum Direction {Up, Down, Left, Right}
 public enum AlignmentToPlayer { Friendly, Neutral, Hostile}
 public enum QuestType {Hunt, Aquire}
 public enum NPCGiveOrTakeType {None, Quest, Item, takeQuest, TakeItem}
-public enum ItemType { Consumable}
+public enum ItemType { Consumable, Weapon, Armour}
+public enum AttackType { Sword, Axe, Punch}
+public enum EquipmentSlotType { RHWeapon, Armour}
 
 namespace SS.Quests
 {
@@ -80,4 +82,10 @@ public struct Response
 {
     public string response;
     public int responceNextID;
+}
+
+public struct InventoyrOrEquipmentSlot
+{
+    public Inventory_Slot inventorySlot;
+    public Equipment_Slot equipmentSlot;
 }
