@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 840214e6cf2ba34498070ba5ed2cb72f, type: 3}
+  m_Name: Body_Armour
+  m_EditorClassIdentifier: 
+  thisItem: {fileID: 11400000, guid: ad2f61969308b7c4f8a91dbbb9c2ea6e, type: 2}
+  currenWeapon: {fileID: 0}
+  defense: 0
+  idleBase: {fileID: 0}
+  idleTwoHandedSword: {fileID: 0}
+  idleTwoHandedAxe: {fileID: 0}
+  walkingBase: {fileID: 0}
+  walkingTwoHandedSword: {fileID: 0}
+  walkingTwoHandedAxe: {fileID: 0}
+  swordAttackOne: {fileID: 0}
+  axeAttackOne: {fileID: 0}

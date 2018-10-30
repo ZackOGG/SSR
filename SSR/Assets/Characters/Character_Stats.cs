@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SS.Equipment;
 
 namespace SS.Character
 {
@@ -40,6 +41,7 @@ namespace SS.Character
         private float boostLengthTempTimer = 0f; //This is for ienums for durations ect
         //====Getters and Setters=====
         public int GetMaxHealth() { return maxHealth; }
+        public int GetTrueMaxHealth() { return maxHealth * 4; }// TODO Make this just one
         public int GetCurrentHealth() { return health; }
         public float GetAttackSpeed() { return attackSpeed; }    
         public void SetInvunerable(bool newBool) { invulnerable = newBool; }
@@ -178,6 +180,18 @@ namespace SS.Character
             }
             DetectWalking();
         }
+        //======Consumeables=====
+        public bool Consume(Item theItem)
+        {
+            if (theItem.GetStatType() == StatType.Health && health < GetTrueMaxHealth())
+            {
+                health += theItem.GetModifier();
+                return true;
+            }
+            print("health to full");
+            return false;
+        }
+
 
     }
 }

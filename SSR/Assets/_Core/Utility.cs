@@ -5,10 +5,11 @@ using SS.Equipment;
 public enum Direction {Up, Down, Left, Right}
 public enum AlignmentToPlayer { Friendly, Neutral, Hostile}
 public enum QuestType {Hunt, Aquire}
-public enum NPCGiveOrTakeType {None, Quest, Item, takeQuest, TakeItem}
+public enum NPCAction {None, Quest, Item, takeQuest, TakeItem, OpenShop}
 public enum ItemType { Consumable, Weapon, Armour}
 public enum AttackType { Sword, Axe, Punch}
-public enum EquipmentSlotType { RHWeapon, Armour}
+public enum EquipmentSlotType { RHWeapon, BodyArmour, Helmet}
+public enum StatType { Strength, Health }
 
 namespace SS.Quests
 {
@@ -69,7 +70,7 @@ public struct Sentence
     public string sentence;
     [Tooltip("0 and no self switch will be activated")]
     public int selfSwitchToSwitchTo;
-    public NPCGiveOrTakeType giveOrTakeType;
+    public NPCAction nPCAction;
     public Quest theQuestToGiveOrTake;
     public Item theItemToGiveOrTake;
     public int questSuccessLocalID;
@@ -88,4 +89,12 @@ public struct InventoyrOrEquipmentSlot
 {
     public Inventory_Slot inventorySlot;
     public Equipment_Slot equipmentSlot;
+}
+
+[System.Serializable]
+public struct Money
+{
+    public int Gold;
+    public int Silver;
+    public int Copper;
 }

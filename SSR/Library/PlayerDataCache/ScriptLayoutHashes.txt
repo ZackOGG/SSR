@@ -1,6 +1,6 @@
-WindowsStandalone
+OSXStandalone
 PlayerPath?
-Z:/Software/Unity 2018.1.6.f1/Built/SSR/SSR_QuestandInventoryDemo_2/SSR_QuestandInventoryDemo2_Windows/SSR_QuestandInventoryDemo2_Windows.exe
+Z:/Software/Unity 2018.1.6.f1/Built/SSR/SSR_Equipment_Demo_1/Mac.app
 SceneListBegin?
 Assets/Scenes/Demo_Scene.unity
 SceneListEnd?
@@ -125,6 +125,7 @@ d02bf5da9083400974bd29b057f0d067 Cinemachine.dll:Cinemachine.CinemachineFreeLook
 9de3a22eca9aefadba2d10d5987cefe3 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
 7adf146ca19fccbdd5ababbe987acdc8 Assembly-CSharp.dll:SS.Equipment.Projectile
 c9bfbc7800acb02b38b438286dd1924c Cinemachine.dll:Cinemachine.NoiseSettings
+1ceedc0a9c72e498758c5e6beed917e2 Assembly-CSharp.dll:SS.Equipment.Equipment_Manager
 322cb40e1e282f28af980cbef7922a90 UnityEngine.Analytics.dll:UnityEngine.Analytics.AnalyticsEventTracker
 dc07d7ad69b399a46e92c483bf1c04ca UnityEngine.Analytics.dll:UnityEngine.Analytics.AnalyticsTracker
 bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.AudioSpatializerMicrosoft
@@ -132,7 +133,7 @@ bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.Audi
 463516d5b5fe8e67a0a24c48f2095b04 UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInputModule
 c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingCollider
 45f3431f0103c41611e8d4eec3d439df UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
-5d3f241b35a394e50d6cfb081cb836a3 Assembly-CSharp.dll:SS.Character.Animator_Controller
+eb67b3f7b8414c1c248c5939b00ce7a8 Assembly-CSharp.dll:SS.Character.Animator_Controller
 30afa8783a8bbee2e465ec9ce1efaee2 Cinemachine.dll:Cinemachine.Timeline.CinemachineTrack
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:SS.Character.Land_Detector
 a4973e91268c9361b27f319a88d56630 Assembly-CSharp.dll:SS.AI.StartBossFight
@@ -170,6 +171,7 @@ e9bdabf9265d758d56f01bb188916fa8 UnityEngine.Networking.dll:UnityEngine.Networki
 528ea1fd7c01796fc60c4e2f172ea229 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformVisualizer
 2f4750bc37981f6624fa67b2969a3aa7 Cinemachine.dll:Cinemachine.CinemachineImpulseListener
 b9a7bac364c2cefd64c2a71392f8d998 Assembly-CSharp.dll:.IceFloorMove
+186b6edb854ed6613d42ee2d411e90ba Assembly-CSharp.dll:.Equipment_Slot
 9134460821309929fbb92556c2d06a53 Cinemachine.dll:Cinemachine.CinemachineGroupComposer
 05524b8f659e7bfe5756d1335fec24ba Cinemachine.dll:Cinemachine.CinemachineSameAsFollowTarget
 c7c3a3d1b3dfc3402bfee74c493a06c1 Cinemachine.dll:Cinemachine.CinemachineBlendListCamera
@@ -207,11 +209,12 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.Spa
 9de3a22eca9aefadba2d10d5987cefe3 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
 f739fe68956c7babcc274f024cbc4a87 Cinemachine.dll:Cinemachine.CinemachineSmoothPath
 05524b8f659e7bfe5756d1335fec24ba Cinemachine.dll:Cinemachine.CinemachineHardLookAt
-22899e503d60b991bbe4e96a07c022cb Assembly-CSharp.dll:SS.Equipment.Inventory
-aa13b12bbbcce6f5ef801ea235ff16d5 Assembly-CSharp.dll:SS.Equipment.Item
+26ce50c97e344c2b4e3f6be54faa3e0f Assembly-CSharp.dll:SS.Equipment.Inventory
+c31592c1df14a65fa5fabcc6017994a9 Assembly-CSharp.dll:SS.Equipment.Item
 cdddf0fd55dc853c6e39ca230956aabd Assembly-CSharp.dll:.Player_Relation
+a515e45f12d1c71fc40037031371919b Assembly-CSharp.dll:SS.Equipment.Armour
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Follow_Mouse
-8849f4421c560ca176998f8585b1741f Assembly-CSharp.dll:SS.Equipment.Weapons
+357bed937f29603c697590bfd816efe1 Assembly-CSharp.dll:SS.Equipment.Weapons
 b07b3e34a25d7e10485242031870eb71 Assembly-CSharp.dll:SS.Quests.Quest
 94410a9608755481e08622a005a52700 Assembly-CSharp.dll:SS.AI.AI_Combat_Standard
 59491122521a69641d7305587f55faaa Cinemachine.dll:Cinemachine.CinemachineBrain
@@ -220,3 +223,4 @@ b07b3e34a25d7e10485242031870eb71 Assembly-CSharp.dll:SS.Quests.Quest
 c2fa38e30e8066319194bb52effdd093 Assembly-CSharp.dll:.LightningSpin
 883fd17f99ecce65ce4a9d6b97c3bdd1 Cinemachine.dll:Cinemachine.CinemachineBasicMultiChannelPerlin
 781f2500ca4af45d3f34d550f2f7a07d Cinemachine.dll:Cinemachine.CinemachineClearShot
+3e310b546220b0190b9f563688bb020c Assembly-CSharp.dll:SS.Character.Weapon_Controller

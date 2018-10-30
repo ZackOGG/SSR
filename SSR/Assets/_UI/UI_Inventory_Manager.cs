@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using SS.UI;
 using SS.Equipment;
+using SS.Character;
 
 public class UI_Inventory_Manager : MonoBehaviour {
 
@@ -18,8 +19,14 @@ public class UI_Inventory_Manager : MonoBehaviour {
     private GameObject selectedIconOrginalHome;
     private bool isHoldIcon = false;
     private Inventory inventoryManager;
+    private Character_Stats characterStats;
     private Equipment_Manager equipmentManager;
-
+    public Shop_Manager shopManager;
+    public void SetShopManager(Shop_Manager newShopManager) { shopManager = newShopManager; }
+    public Inventory playerInventory;
+    public void SetPlayerInventory(Inventory newInventory) { playerInventory = newInventory; }
+    public bool ShopOpen = false;
+    public void SetIsShopOpen(bool theBool) { ShopOpen = theBool; }
 	// Use this for initialization
 	void Start ()
     {
@@ -35,10 +42,11 @@ public class UI_Inventory_Manager : MonoBehaviour {
     }
     private void SetRefrences()
     {
-        inventoryManager = FindObjectOfType<Inventory>(); // TODO NOT 2PlAYER FREINDLY
+        inventoryManager = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
         eventSystem = this.GetComponent<EventSystem>();
         gRaycaster = canvas.GetComponent<GraphicRaycaster>();
-        equipmentManager = FindObjectOfType<Equipment_Manager>(); // TODO NOT 2PlAYER FREINDLY
+        equipmentManager = GameObject.FindGameObjectWithTag("Player").GetComponent<Equipment_Manager>();
+        characterStats = GameObject.FindGameObjectWithTag("Player").GetComponent<Character_Stats>();
     }
 	
 	// Update is called once per frame
@@ -47,6 +55,10 @@ public class UI_Inventory_Manager : MonoBehaviour {
         if (Input.GetMouseButtonDown(0) && eventSystem.IsPointerOverGameObject())
         {
             StartCoroutine("StartHoldIcon");
+        }
+        if(Input.GetMouseButtonUp(1))
+        {
+            ProcessRightClick();
         }
         if(isHoldIcon)
         {
@@ -62,7 +74,6 @@ public class UI_Inventory_Manager : MonoBehaviour {
     {
         if(OverInventoryOrEquipment().inventorySlot != null)
         {
-            print("Selecting");
             selectedIcon = OverAnotherInventorySlot().GetComponentInChildren<InventorySlotIcon>().gameObject;
             selectedIconOrginalHome = OverAnotherInventorySlot().GetComponent<Inventory_Slot>().gameObject;
         }
@@ -73,6 +84,21 @@ public class UI_Inventory_Manager : MonoBehaviour {
         }
         
         
+    }
+    private void ProcessRightClick()
+    {
+        if(OverAnotherInventorySlot() && !OverAnotherShopSlot() && !ShopOpen)
+        {
+            inventoryManager.UseItemAbility(OverAnotherInventorySlot().GetComponent<Inventory_Slot>());
+        }
+        if(OverAnotherShopSlot())
+        {
+            shopManager.BuyItem(OverAnotherInventorySlot());
+        }
+        if(OverAnotherInventorySlot() && ShopOpen && !OverAnotherShopSlot())
+        {
+            shopManager.SellItem(OverAnotherInventorySlot());
+        }
     }
     //=====Inventory=====
     
@@ -138,12 +164,31 @@ public class UI_Inventory_Manager : MonoBehaviour {
         }
         return null;
     }
+    private Shop_Slot OverAnotherShopSlot()
+    {
+
+        pointerEventData = new PointerEventData(eventSystem);
+        pointerEventData.position = Input.mousePosition;
+        List<RaycastResult> results = new List<RaycastResult>();
+
+        gRaycaster.Raycast(pointerEventData, results);
+
+        foreach (RaycastResult theResult in results)
+        {
+            if (theResult.gameObject.GetComponent<Shop_Slot>())
+            {
+                return theResult.gameObject.GetComponent<Shop_Slot>();
+            }
+        }
+        return null;
+    }
+
     IEnumerator StartHoldIcon()
     {
         ProcessSelectUIObject();
         GameObject tempIconObject = selectedIcon;
         yield return new WaitForSeconds(holdTime);
-        if(OverInventoryOrEquipment().inventorySlot != null && OverInventoryOrEquipment().equipmentSlot == null)
+        if(OverInventoryOrEquipment().inventorySlot != null && OverInventoryOrEquipment().equipmentSlot == null && !OverAnotherShopSlot())
         {
             if (Input.GetMouseButton(0) && selectedIcon == tempIconObject && OverAnotherInventorySlot() == selectedIconOrginalHome.GetComponent<Inventory_Slot>())
             {
@@ -171,7 +216,6 @@ public class UI_Inventory_Manager : MonoBehaviour {
     {
         if (OverAnotherEquipmentSlot()) // Droping onto an equipment slot
         {
-            print("O bugger");
             isHoldIcon = false;
             
             selectedIcon.transform.SetParent(selectedIconOrginalHome.transform);

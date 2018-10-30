@@ -1,0 +1,376 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1847385494118140}
+  m_IsPrefabParent: 1
+--- !u!1 &1847385494118140
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4684063092884436}
+  - component: {fileID: 212616884003386380}
+  - component: {fileID: 114681575553559146}
+  - component: {fileID: 114070926443947534}
+  - component: {fileID: 114876119034938464}
+  - component: {fileID: 95842733413075164}
+  m_Layer: 0
+  m_Name: Dave
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4684063092884436
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1847385494118140}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -88.02, y: -4.18, z: -0.25660542}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &95842733413075164
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1847385494118140}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0f6737b2384c0c04cbe0e2c81b60d6e6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114070926443947534
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1847385494118140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6ad9d0ddc5cfa848993455dc2b5f9f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  alignmentToPlayer: 0
+--- !u!114 &114681575553559146
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1847385494118140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eec86af2432884d4ca6b4bfe32b57272, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 1
+  health: 0
+  attackSpeed: 0
+  defaultMovementSpeed: 0
+  strength: 1
+  weaponDamage: 1
+  jumpPower: 10
+  cantDie: 0
+  invulnerable: 0
+  isPlayer: 0
+  walking: 0
+--- !u!114 &114876119034938464
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1847385494118140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d34b53735811c341a27ed1dd55ee7cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nPCName: Dave
+  sentances:
+  - dialogue:
+    - localID: 0
+      sentence: Hello adventurer do you need a quest?
+      selfSwitchToSwitchTo: 0
+      giveOrTakeType: 0
+      theQuestToGiveOrTake: {fileID: 0}
+      theItemToGiveOrTake: {fileID: 0}
+      questSuccessLocalID: 0
+      questFailedLocalID: 0
+      responces:
+      - response: Hello what might be your name?
+        responceNextID: 1
+      - response: I do indeed what might be your quest be?
+        responceNextID: 2
+      - response: And whats in it for me?
+        responceNextID: 3
+      - response: You can jog on Jimmy!
+        responceNextID: 7
+    - localID: 1
+      sentence: I'm Dave, what about that quest now?
+      selfSwitchToSwitchTo: 0
+      giveOrTakeType: 0
+      theQuestToGiveOrTake: {fileID: 0}
+      theItemToGiveOrTake: {fileID: 0}
+      questSuccessLocalID: 0
+      questFailedLocalID: 0
+      responces:
+      - response: Sure what be your quest?
+        responceNextID: 2
+      - response: Will it hurt?
+        responceNextID: 5
+      - response: No thank you.
+        responceNextID: 4
+    - localID: 2
+      sentence: Can you please kill the skeli bobs down the road for me, thank you.
+      selfSwitchToSwitchTo: 0
+      giveOrTakeType: 0
+      theQuestToGiveOrTake: {fileID: 0}
+      theItemToGiveOrTake: {fileID: 0}
+      questSuccessLocalID: 0
+      questFailedLocalID: 0
+      responces:
+      - response: I will do your quest
+        responceNextID: 6
+      - response: I will not.
+        responceNextID: 4
+    - localID: 3
+      sentence: We shall see about your reward if you make it back.
+      selfSwitchToSwitchTo: 0
+      giveOrTakeType: 0
+      theQuestToGiveOrTake: {fileID: 0}
+      theItemToGiveOrTake: {fileID: 0}
+      questSuccessLocalID: 0
+      questFailedLocalID: 0
+      responces:
+      - response: Okay so whats the job?
+        responceNextID: 2
+      - response: I think i'll pass.
+        responceNextID: 4
+    - localID: 4
+      sentence: Suit yourself.
+      selfSwitchToSwitchTo: 0
+      giveOrTakeType: 0
+      theQuestToGiveOrTake: {fileID: 0}
+      theItemToGiveOrTake: {fileID: 0}
+      questSuccessLocalID: 0
+      questFailedLocalID: 0
+      responces:
+      - response: Continue
+        responceNextID: -1
+    - localID: 5
+      sentence: No not at all, at least let me tell you the quest?
+      selfSwitchToSwitchTo: 0
+      giveOrTakeType: 0
+      theQuestToGiveOrTake: {fileID: 0}
+      theItemToGiveOrTake: {fileID: 0}
+      questSuccessLocalID: 0
+      questFailedLocalID: 0
+      responces:
+      - response: Sure.
+        responceNextID: 2
+      - response: Humm i'll pass thanks.
+        responceNextID: 4
+    - localID: 6
+      sentence: Wonderful now be on your way.
+      selfSwitchToSwitchTo: 0
+      giveOrTakeType: 1
+      theQuestToGiveOrTake: {fileID: 11400000, guid: 936e02461e2bb9d48ac302fa12ae29ec,
+        type: 2}
+      theItemToGiveOrTake: {fileID: 0}
+      questSuccessLocalID: 0
+      questFailedLocalID: 0
+      responces:
+      - response: Continue
+        responceNextID: 8
+    - localID: 7
+      sentence: But my names Dave.
+      selfSwitchToSwitchTo: 0
+      giveOrTakeType: 0
+      theQuestToGiveOrTake: {fileID: 0}
+      theItemToGiveOrTake: {fileID: 0}
+      questSuccessLocalID: 0
+      questFailedLocalID: 0
+      responces:
+      - response: Continue
+        responceNextID: -1
+    - localID: 8
+      sentence: '**Continue for self switch)'
+      selfSwitchToSwitchTo: 1
+      giveOrTakeType: 0
+      theQuestToGiveOrTake: {fileID: 0}
+      theItemToGiveOrTake: {fileID: 0}
+      questSuccessLocalID: 0
+      questFailedLocalID: 0
+      responces:
+      - response: Continue
+        responceNextID: -1
+  - dialogue:
+    - localID: 0
+      sentence: Hello, have you killed them yet?
+      selfSwitchToSwitchTo: 0
+      giveOrTakeType: 0
+      theQuestToGiveOrTake: {fileID: 0}
+      theItemToGiveOrTake: {fileID: 0}
+      questSuccessLocalID: 0
+      questFailedLocalID: 0
+      responces:
+      - response: I have indeed.
+        responceNextID: 1
+      - response: No not yet.
+        responceNextID: 4
+    - localID: 1
+      sentence: '*Dave checks your words*'
+      selfSwitchToSwitchTo: 0
+      giveOrTakeType: 3
+      theQuestToGiveOrTake: {fileID: 11400000, guid: 936e02461e2bb9d48ac302fa12ae29ec,
+        type: 2}
+      theItemToGiveOrTake: {fileID: 0}
+      questSuccessLocalID: 2
+      questFailedLocalID: 3
+      responces: []
+    - localID: 2
+      sentence: Wonderful, here is your reward.
+      selfSwitchToSwitchTo: 0
+      giveOrTakeType: 2
+      theQuestToGiveOrTake: {fileID: 0}
+      theItemToGiveOrTake: {fileID: 11400000, guid: 89e63b4082b0136438202405c2fe43eb,
+        type: 2}
+      questSuccessLocalID: 0
+      questFailedLocalID: 0
+      responces:
+      - response: Continue
+        responceNextID: 6
+    - localID: 3
+      sentence: Ummm I can see them.
+      selfSwitchToSwitchTo: 0
+      giveOrTakeType: 0
+      theQuestToGiveOrTake: {fileID: 0}
+      theItemToGiveOrTake: {fileID: 0}
+      questSuccessLocalID: 0
+      questFailedLocalID: 0
+      responces:
+      - response: Continue
+        responceNextID: 5
+    - localID: 4
+      sentence: Well get on with it.
+      selfSwitchToSwitchTo: 0
+      giveOrTakeType: 0
+      theQuestToGiveOrTake: {fileID: 0}
+      theItemToGiveOrTake: {fileID: 0}
+      questSuccessLocalID: 0
+      questFailedLocalID: 0
+      responces:
+      - response: Continue
+        responceNextID: -1
+    - localID: 5
+      sentence: Your going to get on with it now?
+      selfSwitchToSwitchTo: 0
+      giveOrTakeType: 0
+      theQuestToGiveOrTake: {fileID: 0}
+      theItemToGiveOrTake: {fileID: 0}
+      questSuccessLocalID: 0
+      questFailedLocalID: 0
+      responces:
+      - response: I will.
+        responceNextID: -1
+    - localID: 6
+      sentence: '**Continue for self switch**'
+      selfSwitchToSwitchTo: 2
+      giveOrTakeType: 2
+      theQuestToGiveOrTake: {fileID: 0}
+      theItemToGiveOrTake: {fileID: 0}
+      questSuccessLocalID: 0
+      questFailedLocalID: 0
+      responces:
+      - response: I will.
+        responceNextID: -1
+  - dialogue:
+    - localID: 0
+      sentence: Your purpose for Dave is over... you can see that much in the look
+        he gives you.
+      selfSwitchToSwitchTo: 0
+      giveOrTakeType: 0
+      theQuestToGiveOrTake: {fileID: 0}
+      theItemToGiveOrTake: {fileID: 0}
+      questSuccessLocalID: 0
+      questFailedLocalID: 0
+      responces:
+      - response: Continue
+        responceNextID: -1
+    - localID: 1
+      sentence: '*Dave checks your words*'
+      selfSwitchToSwitchTo: 0
+      giveOrTakeType: 3
+      theQuestToGiveOrTake: {fileID: 11400000, guid: 936e02461e2bb9d48ac302fa12ae29ec,
+        type: 2}
+      theItemToGiveOrTake: {fileID: 0}
+      questSuccessLocalID: 2
+      questFailedLocalID: 3
+      responces: []
+--- !u!212 &212616884003386380
+SpriteRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1847385494118140}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 0cde5814606983d49ad2d6e2f94a32f5, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 1
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0

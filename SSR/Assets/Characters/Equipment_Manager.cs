@@ -13,13 +13,18 @@ namespace SS.Equipment
 
         [Header("Slots")]
         [SerializeField] Item rightHand;
-        [SerializeField] Item armor; // This is to be split up
+        [SerializeField] Sprite defaultWeaponIcon;
+        [SerializeField] Item bodyArmor;
+        [SerializeField] Item helmet;
         [SerializeField] Item defaultWeapon;
         public Item GetDefaultWeapon() { return defaultWeapon; }
         public Weapons testWeapon;
+        public Armour testArmour;
 
         public delegate void EquipWeapon(Weapons newWeapon);
         public EquipWeapon equipWeapon;
+        public delegate void EquipBodyArmourEvent(Armour newArmour);
+        public EquipBodyArmourEvent equipBodyArmour;
 
         // Use this for initialization
         void Start()
@@ -45,12 +50,21 @@ namespace SS.Equipment
             if(Input.GetKeyDown(KeyCode.T))
             {
                 //EquipRightHand(testWeapon.GetItem());
+                //EquipBodyArmour(testArmour.GetItem());
+            }
+            if(Input.GetKeyDown(KeyCode.Escape))
+            {
+                CloseCharacterProfile();
             }
         }
 
         private void ToggleCharacterProfile()
         {
             uICharacterWindow.SetActive(!uICharacterWindow.activeSelf);
+        }
+        private void CloseCharacterProfile()
+        {
+            uICharacterWindow.SetActive(false);
         }
         //=====UI Equipment Management=====
         private void UpdateEquipmentUI()
@@ -62,7 +76,7 @@ namespace SS.Equipment
             }
             else
             {
-                uiRightHand.GetComponentInChildren<InventorySlotIcon>().GetComponent<Image>().enabled = false;
+                uiRightHand.GetComponentInChildren<InventorySlotIcon>().GetComponent<Image>().sprite = defaultWeaponIcon;
             }
         }
 
@@ -72,7 +86,7 @@ namespace SS.Equipment
 
         //EquipmentSlotFree
         
-        public void EquipRightHand(Item  theItem)
+        private void EquipRightHand(Item  theItem)
         {
             rightHand = theItem;
             if(theItem != null)
@@ -93,6 +107,14 @@ namespace SS.Equipment
             rightHand = null;
             equipWeapon(null);
             UpdateEquipmentUI();
+        }
+        public void EquipBodyArmour(Item theItem)
+        {
+            bodyArmor = theItem;
+            if(theItem != null)
+            {
+                //NEED TO UPDATE EQUIPMENT UI
+            }
         }
         public void UnEquipSlot(Equipment_Slot slot)
         {
@@ -154,7 +176,7 @@ namespace SS.Equipment
             {
                 EquipRightHand(theItem);
             }
-            if(slot.GetEquipmentSlotType() == EquipmentSlotType.Armour)
+            if(slot.GetEquipmentSlotType() == EquipmentSlotType.BodyArmour)
             {
                 print("Equiping some arrmor... Come on program it!!!");
             }
@@ -169,7 +191,7 @@ namespace SS.Equipment
             {
                 return rightHand;
             }
-            if (slot.GetEquipmentSlotType() == EquipmentSlotType.Armour)
+            if (slot.GetEquipmentSlotType() == EquipmentSlotType.BodyArmour)
             {
                 print("Equiping some arrmor... Come on program it!!!");
                 return null;

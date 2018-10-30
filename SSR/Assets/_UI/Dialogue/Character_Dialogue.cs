@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using SS.Quests;
 using SS.Equipment;
+using SS.Character;
 
 namespace SS.UI
 {
@@ -44,7 +45,22 @@ namespace SS.UI
             {                
                 StopDialogue();
                 SetNPCName();
+                if (this.GetComponent<Shop_Manager>())
+                {
+                    this.GetComponent<Shop_Manager>().CloseShop();
+                }
+
             }
+            if (Input.GetKeyDown(KeyCode.Escape) && talkingToThisNPC)
+            {
+                StopDialogue();
+                SetNPCName();
+                if (this.GetComponent<Shop_Manager>())
+                {
+                    this.GetComponent<Shop_Manager>().CloseShop();
+                }
+            }
+
         }
 
         private void StartDialogue()
@@ -59,6 +75,7 @@ namespace SS.UI
             talkingToThisNPC = false;
             currentDialougeState = 0;
             dialogueManger.CloseDialogueBox();
+            
         }
 
         private void SetNPCName()
@@ -81,21 +98,21 @@ namespace SS.UI
                 theResponses++;
             }
             dialogueManger.EnableDisableBoxes(sentances[currentSelfSwitch].dialogue[theDialogueID].responces.Length);
-            if (sentances[currentSelfSwitch].dialogue[theDialogueID].giveOrTakeType == NPCGiveOrTakeType.Item) // Give item to player
+            if (sentances[currentSelfSwitch].dialogue[theDialogueID].nPCAction == NPCAction.Item) // Give item to player
             {
                 playersInventory.AddItemToInventory(sentances[currentSelfSwitch].dialogue[theDialogueID].theItemToGiveOrTake, -1);
 
                 //TODO ADD IF BAG IS FULL SOMTHING EG DROP
             }
-            if(sentances[currentSelfSwitch].dialogue[theDialogueID].giveOrTakeType == NPCGiveOrTakeType.TakeItem) //Take Item from player
+            if(sentances[currentSelfSwitch].dialogue[theDialogueID].nPCAction == NPCAction.TakeItem) //Take Item from player
             {
                 playersInventory.RemoveItemFromInventory(sentances[currentSelfSwitch].dialogue[theDialogueID].theItemToGiveOrTake, -1);
             }
-            if (sentances[currentSelfSwitch].dialogue[theDialogueID].giveOrTakeType == NPCGiveOrTakeType.Quest) // Gives player a new quest
+            if (sentances[currentSelfSwitch].dialogue[theDialogueID].nPCAction == NPCAction.Quest) // Gives player a new quest
             {
                 player.GetComponent<Quest_Jornal>().AddNewQuest(sentances[currentSelfSwitch].dialogue[theDialogueID].theQuestToGiveOrTake);
             }
-            if (sentances[currentSelfSwitch].dialogue[theDialogueID].giveOrTakeType == NPCGiveOrTakeType.takeQuest) // Checks to see if the quest is complete
+            if (sentances[currentSelfSwitch].dialogue[theDialogueID].nPCAction == NPCAction.takeQuest) // Checks to see if the quest is complete
             {
                 Quest_Jornal playerJournal = player.GetComponent<Quest_Jornal>();
                 if (playerJournal.IsQuestComplete(sentances[currentSelfSwitch].dialogue[theDialogueID].theQuestToGiveOrTake) == true)
@@ -109,6 +126,12 @@ namespace SS.UI
                 {
                     SetNPCWordsAndAnswers(sentances[currentDialougeState].dialogue[theDialogueID].questFailedLocalID);
                 }
+            }
+            
+            if(sentances[currentSelfSwitch].dialogue[theDialogueID].nPCAction == NPCAction.OpenShop)
+            {
+                dialogueManger.CloseDialogueBox();
+                this.GetComponent<Shop_Manager>().OpenShop();
             }
             
             if (sentances[currentSelfSwitch].dialogue[theDialogueID].selfSwitchToSwitchTo > 0) // Checks to selfswitch

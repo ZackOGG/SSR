@@ -3,54 +3,174 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using SS.Quests;
+using SS.Character;
+using SS.UI;    
 
 namespace SS.Equipment
 {
     public class Inventory : MonoBehaviour
     {
+        [SerializeField] bool nPC;
+        [SerializeField] Money money;
+        public Money GetMoney() { return money; }
         [SerializeField] Item[] inventoryItems;
         public Item[] GetInventoryItems() { return inventoryItems; }
         [SerializeField] GameObject uIInventoryWindow;
         [SerializeField] Transform uIItventorySlotParent;
-        [SerializeField] Item startingWeapon;
+        [SerializeField] Item startingItem;
+        [SerializeField] Item startingItemTwo;
         public Image[] uIInventorySlotsIcons;
+        public Image[] uiShopSlotIcons;
 
+        private Transform shopIconParent;
         private Quest_Jornal questJornal;
+        private Character_Stats characterStats;
+
+        //=====Money Manager=====
+        public void AddMoney(Money amount)
+        {
+            print("Test1");
+            print(amount.Gold);
+            print(amount.Silver);
+            print(amount.Copper);
+            money.Copper += amount.Copper;
+            money.Silver += amount.Silver;
+            money.Gold += amount.Gold;
+            print(money.Gold);
+            print(money.Silver);
+            print(money.Copper);
+
+            if (money.Copper > 99)
+            {
+                money.Copper = money.Copper - 100;
+                money.Silver = money.Silver + 1;
+            }
+            if (money.Silver > 99)
+            {
+                money.Silver = money.Silver - 100;
+                money.Gold = money.Gold + 1;
+            }
+        }
+        public void RemoveMoney(Money amount)
+        {
+            print("Test2");
+            if (amount.Copper > money.Copper)
+            {                
+                if(money.Silver < 1)
+                {
+                    money.Gold -= 1;
+                    money.Silver += 99;
+                }
+                else
+                {
+                    money.Silver = money.Silver - 1;
+
+                }
+                money.Copper = money.Copper + 100;
+                
+            }
+            money.Copper -= amount.Copper;
+            if (amount.Silver > money.Silver)
+            {
+                money.Gold -= 1;
+                money.Silver = money.Silver + 100;
+                money.Silver = money.Silver - amount.Silver;
+            }
+            else
+            {
+                money.Silver = money.Silver - amount.Silver;
+            }
+            money.Gold = money.Gold - amount.Gold;
+        }
+        public bool EnoughMoney(Money amount)
+        {
+            
+            int amountNeededInCopper = amount.Copper + ((amount.Silver * 100) + (amount.Gold * 10000));
+            int amountHaveInCopper = money.Copper + ((money.Silver * 100) + (money.Gold * 10000));
+            if(amountHaveInCopper >= amountNeededInCopper)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        //=======================
 
         private void Start()
         {
             SetRefrences();
             SetStartingBagSize();
-            FindIcons();
-            UpdateInventoryUI();
-            AddItemToInventory(startingWeapon, -1);
+            if(!nPC)
+            {
+                FindIcons();
+                UpdateInventoryUI();
+            }
+            if(nPC)
+            {
+                GetShopUISlotsIcons();
+            }
+            AddItemToInventory(startingItem, -1);
+            AddItemToInventory(startingItemTwo, -1);
         }
         private void SetRefrences()
         {
             questJornal = this.GetComponent<Quest_Jornal>();
+            characterStats = this.GetComponent<Character_Stats>();
+            if(nPC)
+            {
+                shopIconParent = GameObject.FindObjectsOfType<Shop_Icon_Parent>()[0].GetComponent<Transform>();
+                shopIconParent.GetComponentInParent<Shop_UI_Manager>().gameObject.SetActive(false);
+                if(Object.FindObjectsOfType<Shop_Icon_Parent>().Length > 1)
+                {                    
+                    Debug.LogError("TWO OR MORE SHOP_ICON_PARENTS DETECTED");
+                }
+            }
         }
         private void SetStartingBagSize()
         {
             inventoryItems = new Item[16];
-            uIInventorySlotsIcons = new Image[inventoryItems.Length];
+            if (!nPC)
+            {                
+                uIInventorySlotsIcons = new Image[inventoryItems.Length];
+            }
+            if(nPC)
+            {
+                uiShopSlotIcons = new Image[inventoryItems.Length];
+            }
         }
         //=====Inventory UI=====
         private void FindIcons()
         {
             int slotNum = 0;
-            foreach (Transform obj in uIItventorySlotParent)
+            foreach (Transform obj in uIItventorySlotParent )
             {
                 GameObject tempIcon = obj.GetComponentInChildren<InventorySlotIcon>().gameObject;
                 uIInventorySlotsIcons[slotNum] = tempIcon.GetComponent<Image>();
                 slotNum++;
             }
         }
+        private void GetShopUISlotsIcons()
+        {
+            int slotNum = 0;
+            foreach (Transform obj in shopIconParent)
+            {
+                GameObject tempIcon = obj.GetComponentInChildren<InventorySlotIcon>().gameObject;
+                uiShopSlotIcons[slotNum] = tempIcon.GetComponent<Image>();
+                slotNum++;
+            }
+        }
 
         private void Update()
         {            
-            if (Input.GetKeyDown(KeyCode.B))
+            if (Input.GetKeyDown(KeyCode.B) && !nPC)
             {
                 ToggleInventoryWindow();
+            }
+            if(Input.GetKeyDown(KeyCode.Escape) && !nPC)
+            {
+                CloseInventoryWindow();
             }
 
         }
@@ -58,6 +178,14 @@ namespace SS.Equipment
         public void ToggleInventoryWindow()
         {
             uIInventoryWindow.SetActive(!uIInventoryWindow.activeInHierarchy);
+        }
+        public void OpenInventoryWindow()
+        {
+            uIInventoryWindow.SetActive(true);
+        }
+        public void CloseInventoryWindow()
+        {
+            uIInventoryWindow.SetActive(false);            
         }
 
         public void UpdateInventoryUI()
@@ -79,6 +207,7 @@ namespace SS.Equipment
                 }
             }
         }
+        
         //========================
         //=====Bag Management=====
         public void AddItemToInventory(Item newItem, int slotNum)
@@ -86,8 +215,13 @@ namespace SS.Equipment
             if (FindAmountOfFreeSlots() > 0 && slotNum < 0)
             {
                 inventoryItems[FindFirstFreeSlot()] = newItem;
-                UpdateInventoryUI();
-                questJornal.UpdateItemQuests();
+                if(!nPC)
+                {
+                    UpdateInventoryUI();
+                    questJornal.UpdateItemQuests();
+                }
+              
+                
                 return;
             }
             if (slotNum >= 0)
@@ -95,21 +229,30 @@ namespace SS.Equipment
                 if (FindSpesificFreeSlot(slotNum))
                 {
                     inventoryItems[slotNum] = newItem;
-                    UpdateInventoryUI();
-                    questJornal.UpdateItemQuests();
+                    if (!nPC)
+                    {
+                        UpdateInventoryUI();
+                        questJornal.UpdateItemQuests();
+                    }
                 }
                 else { Debug.LogError("Slot not free when trying to move spesifc into it"); }
 
             }
-            questJornal.UpdateItemQuests();
+            if (!nPC)
+            {
+                questJornal.UpdateItemQuests();
+            }
         }
         public void RemoveItemFromInventory(Item theItem, int slotNum)
         {
             if (slotNum >= 0)
             {
                 inventoryItems[slotNum] = null;
-                UpdateInventoryUI();
-                questJornal.UpdateItemQuests();
+                if(!nPC)
+                {
+                    UpdateInventoryUI();
+                    questJornal.UpdateItemQuests();
+                }                
             }
             if (theItem != null)
             {
@@ -159,16 +302,34 @@ namespace SS.Equipment
         }
         public int WhichInventorySlot(InventorySlotIcon theSlot)
         {
-            int slotNum = 0;
-            foreach (Image slot in uIInventorySlotsIcons)
+            if (!nPC)
             {
-                if (slot.GetComponent<InventorySlotIcon>() == theSlot)
+                int slotNum = 0;
+                foreach (Image slot in uIInventorySlotsIcons)
                 {
-                    return slotNum;
+                    if (slot.GetComponent<InventorySlotIcon>() == theSlot)
+                    {                        
+                        return slotNum;
+                    }
+                    slotNum++;
                 }
-                slotNum++;
-            }
 
+                return -1;
+            }
+            if(nPC)
+            {
+                int slotNum = 0;
+                foreach (Image slot in uiShopSlotIcons)
+                {
+                    if (slot.GetComponent<InventorySlotIcon>() == theSlot)
+                    {
+                        return slotNum;
+                    }
+                    slotNum++;
+                }
+
+                return -1;
+            }
             return -1;
         }
         public void SwitchBagSlots(InventorySlotIcon firstToSwitch, InventorySlotIcon secondToSwitch)
@@ -224,6 +385,17 @@ namespace SS.Equipment
         public Item FindItemInSlot(Inventory_Slot slot) // Finds what item is in a spesific slot
         {
             return inventoryItems[WhichInventorySlot(slot.GetComponentInChildren<InventorySlotIcon>())];
+        }
+        public void UseItemAbility(Inventory_Slot slot)
+        {     
+            Item itemToUse = FindItemInSlot(slot);
+            if(itemToUse.GetItemType() == ItemType.Consumable)
+            {
+                if(characterStats.Consume(itemToUse))
+                {
+                    RemoveItemFromInventory(null, WhichInventorySlot(slot.GetComponentInChildren<InventorySlotIcon>()));
+                }
+            }
         }
     }
 }

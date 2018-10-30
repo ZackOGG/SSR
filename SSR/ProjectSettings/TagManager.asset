@@ -48,8 +48,14 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Weapon Before Player
+    uniqueID: 517818517
+    locked: 0
   - name: Character
     uniqueID: 3083916485
+    locked: 0
+  - name: Armour
+    uniqueID: 722669123
     locked: 0
   - name: Weapon
     uniqueID: 551113405

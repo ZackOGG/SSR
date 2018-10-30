@@ -12,7 +12,12 @@ MonoBehaviour:
   m_Name: Item_2HSword_1
   m_EditorClassIdentifier: 
   itemName: 2 Handed Sword
-  icon: {fileID: 21300006, guid: 5e75abc8a86c7534996b43247a302058, type: 3}
+  icon: {fileID: 21300000, guid: fc92f2a4e0e29654281f35beea22c668, type: 3}
   itemType: 1
   weapon: {fileID: 11400000, guid: 25fa4c40c99e95e439c2427bbf407c77, type: 2}
-  armor: {fileID: 0}
+  value:
+    Gold: 0
+    Silver: 5
+    Copper: 50
+  statType: 0
+  modifier: 0
