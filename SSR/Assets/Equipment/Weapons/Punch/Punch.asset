@@ -15,6 +15,7 @@ MonoBehaviour:
   thisItem: {fileID: 11400000, guid: b3e746fcd71c86546a8cbf1b8a63e772, type: 2}
   damage: 0
   attackSpeed: 2
+  knockBackPower: 5
   idle: {fileID: 0}
   walking: {fileID: 0}
   attackOne: {fileID: 7400000, guid: dce0de58d0d97024fae9542fbfe7229f, type: 2}

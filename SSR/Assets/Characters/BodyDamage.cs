@@ -41,8 +41,8 @@ namespace SS.Character
         {
             if(targetsStats)
             {
-                targetsStats.KnockingBack(20f, 0.25f, characterStats.GetDirectionToObject(targetsStats.gameObject)); //TODO CHANGE HARD CODE OF KNOCK BACK
-                targetsStats.TakeDamage(damage);
+                //targetsStats.KnockingBack(20f, 0.25f, characterStats.GetDirectionToObject(targetsStats.gameObject)); //TODO CHANGE HARD CODE OF KNOCK BACK
+                //targetsStats.TakeDamage(damage);
             }
             
         }

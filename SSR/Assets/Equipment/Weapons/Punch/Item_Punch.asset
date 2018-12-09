@@ -13,9 +13,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Punch
   icon: {fileID: 0}
-  itemType: 1
+  itemType: 2
   weapon: {fileID: 11400000, guid: b0e4c4562eeae3f4e93592aa86e61c5d, type: 2}
-  equipmentSlotType: 0
+  equipmentSlotType: 1
   bodyArmour: {fileID: 0}
   value:
     Gold: 0

@@ -13,8 +13,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: 2 Handed Sword
   icon: {fileID: 21300000, guid: fc92f2a4e0e29654281f35beea22c668, type: 3}
-  itemType: 1
+  itemType: 2
   weapon: {fileID: 11400000, guid: 25fa4c40c99e95e439c2427bbf407c77, type: 2}
+  equipmentSlotType: 1
+  bodyArmour: {fileID: 0}
   value:
     Gold: 0
     Silver: 5

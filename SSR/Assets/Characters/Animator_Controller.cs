@@ -34,47 +34,69 @@ namespace SS.Character
 
 
         public Weapons currentWeapon;
-        private Equipment_Manager equipMentManager;
+        private Equipment_Manager equipmentManager;
         private Character_Stats charStats;
-        private Animator anim;
+        private Animator playerAnim;
+        private Animator weaponAnim;
+        private Animator armourAnim;
         private Vector2 lastWalkPos;
         public bool walking = false;
-        private float attackTimer = 0;
+        private bool alreadyWalking = false;
+        private bool alreadyNotWalking = false;
+        public float attackTimer = 0;
+        
+        IEnumerator syncTest()
+        {
+            print("Sync test starting in 7");
+            yield return new WaitForSeconds(5);
+            print("Sync test in 2");
+            yield return new WaitForSeconds(2);
+            print("Test Started");
+            SetAnimsToAttack();
+        }
 
         private void Start()
         {
             SetRefrences();            
             DetectWalking();
             SetOverrides();
-            
-            
+            //StartCoroutine("syncTest");
+
+
+
         }
         private void SetRefrences()
         {
-            anim = this.GetComponent<Animator>();
+            playerAnim = this.GetComponent<Animator>();
+            weaponAnim = this.GetComponentInChildren<Weapon_Controller>().GetComponent<Animator>();
+            armourAnim = this.GetComponentInChildren<Armour_Controller>().GetComponent<Animator>();
             charStats = this.GetComponent<Character_Stats>();
-            equipMentManager = this.GetComponent<Equipment_Manager>();
-            equipMentManager.equipWeapon += EquipWeaponForAnim;
+            equipmentManager = this.GetComponent<Equipment_Manager>();
+            equipmentManager.equipWeapon += EquipWeaponForAnim;
             charStats.callingDeath += LiveOrDie;
             callingAttack += BodyAttackAnim;
+            equipmentManager.restartAnimationEvent += AnimationSyncer;
         }
 
         public void SetAnimationSpeed(float moveSpeed, float attackSpeed)
         {
             float totalAttackSpeed = attackSpeed * currentWeapon.GetAttackSpeed(); //TODO MAKE THIS WORK INDEPENTANT OF LEGS
-            anim.SetFloat("AttackSpeed", totalAttackSpeed);
-            anim.SetFloat("MovementSpeed", moveSpeed);
+            //anim.SetFloat("IdleSpeed", 1f);
+            
+            playerAnim.SetFloat("AttackSpeed", totalAttackSpeed);
+            playerAnim.SetFloat("MovementSpeed", moveSpeed);
         }
         public void SetOverrides()
         {
-            anim.runtimeAnimatorController = animOverCon;
+
+            playerAnim.runtimeAnimatorController = animOverCon;
             animOverCon["DEFAULT_IDLE_ANIMATION"] = baseIdleClip;
             animOverCon["DEFAULT_WALK_ANIMATION"] = baseWalkingClip;
             animOverCon["DEFAULT_ATTACK_ANIMATION"] = baseAttackingClip;  
         }
         public void OverrideAttackAnimation(AnimationClip animClip) // This is to change the attack animation for 
-        {
-            animOverCon["DEFAULT_ATTACK_ANIMATION"] = animClip;
+        {            
+            animOverCon["DEFAULT_ATTACK_ANIMATION"] = animClip;            
         }
         public void OverrideWalkAnimation(AnimationClip animationClip)
         {
@@ -114,30 +136,45 @@ namespace SS.Character
             attackTimer -= Time.deltaTime;
             if (walking)
             {
-                StartWalkAnimation();
+                if (!alreadyWalking)
+                {
+
+                    SetAnimsToWalk();
+                    alreadyNotWalking = false;
+                    alreadyWalking = true;
+                }
             }
             else
             {
-                StopWalkingAnimation();
+                if(!alreadyNotWalking)
+                {
+                    alreadyNotWalking = true;
+                    alreadyWalking = false;
+                    SetAnimsToStopWalk();
+                }
+                
             }
-            if(Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject() && attackTimer <= 0)
+            if(Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject() && attackTimer <= 0 && this.gameObject.tag == "Player")
             {
                 attackTimer = 1 / charStats.GetAttackSpeed();
-                callingAttack();
+                //callingAttack();
+                SetAnimsToAttack();
             }
+            
         }
 
         public void StartWalkAnimation()
         {
-            anim.SetBool("Walking", true);
+
+            playerAnim.SetBool("Walking", true);            
         }
         public void StopWalkingAnimation()
         {
-            anim.SetBool("Walking", false);
+            playerAnim.SetBool("Walking", false);
         }
         public void AttackAnimation()
         {
-            anim.SetTrigger("Attacking");
+            playerAnim.SetTrigger("Attacking");            
         }
         
 
@@ -165,17 +202,58 @@ namespace SS.Character
             //Run death animation
             if(newbool)
             {
-                anim.SetBool("Dead", true);
+                playerAnim.SetBool("Dead", true);
             }
             else
             {
-                anim.SetBool("Dead", false);
+                playerAnim.SetBool("Dead", false);
             }
             
         }
         private void BodyAttackAnim()
         {
-            anim.SetTrigger("Attacking");
+            playerAnim.SetTrigger("Attacking");
+        }
+        private void SetAnimsToAttack()
+        {
+            print("Attacking");
+            BodyAttackAnim();
+            weaponAnim.SetTrigger("Attack");
+            armourAnim.SetTrigger("Attack");
+            StartCoroutine("EndAttackReset");
+        }
+        IEnumerator EndAttackReset()
+        {
+            float timerTime = playerAnim.GetCurrentAnimatorStateInfo(0).length;
+            yield return new WaitForSeconds(timerTime);
+        }
+        private void SetAnimsToWalk()
+        {
+            StartWalkAnimation();
+            weaponAnim.SetBool("Walking", true);
+            armourAnim.SetBool("Walking", true);
+            
+        }
+
+        private void SetAnimsToStopWalk()
+        {
+            StopWalkingAnimation();
+            weaponAnim.SetBool("Walking", false);
+            armourAnim.SetBool("Walking", false);
+            //AnimationSyncer();
+        }
+
+        private void RestartAnimation()
+        {
+            print("Reseting Player");
+            playerAnim.Play(playerAnim.GetCurrentAnimatorStateInfo(0).fullPathHash, 0, 0f);
+        }
+        private void AnimationSyncer()
+        {
+            playerAnim.Play(playerAnim.GetCurrentAnimatorStateInfo(0).fullPathHash, 0, 0f);
+            weaponAnim.Play(weaponAnim.GetCurrentAnimatorStateInfo(0).fullPathHash, 0, 0f);
+            armourAnim.Play(armourAnim.GetCurrentAnimatorStateInfo(0).fullPathHash, 0, 0f);
+            
         }
     }
 }

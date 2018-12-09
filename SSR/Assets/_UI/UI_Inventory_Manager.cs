@@ -50,14 +50,16 @@ public class UI_Inventory_Manager : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update ()
-    {       
+	void Update()
+    {
+        
         if (Input.GetMouseButtonDown(0) && eventSystem.IsPointerOverGameObject())
         {
             StartCoroutine("StartHoldIcon");
         }
         if(Input.GetMouseButtonUp(1))
         {
+            
             ProcessRightClick();
         }
         if(isHoldIcon)
@@ -191,8 +193,7 @@ public class UI_Inventory_Manager : MonoBehaviour {
         if(OverInventoryOrEquipment().inventorySlot != null && OverInventoryOrEquipment().equipmentSlot == null && !OverAnotherShopSlot())
         {
             if (Input.GetMouseButton(0) && selectedIcon == tempIconObject && OverAnotherInventorySlot() == selectedIconOrginalHome.GetComponent<Inventory_Slot>())
-            {
-                print("Over inventory"); 
+            { 
                 isHoldIcon = true;
             }
         }
@@ -237,7 +238,6 @@ public class UI_Inventory_Manager : MonoBehaviour {
             isHoldIcon = false;
             selectedIcon.transform.SetParent(selectedIconOrginalHome.transform);
             selectedIcon.transform.position = selectedIconOrginalHome.transform.position;
-            print(selectedIconOrginalHome);
             if(selectedIconOrginalHome.GetComponent<Inventory_Slot>() != null)
             {
                 print("Test1");
@@ -256,7 +256,7 @@ public class UI_Inventory_Manager : MonoBehaviour {
     }
 
     //=====Equipment Management with Inventory=====
-    private void SwapEquipmentAndInventory(Equipment_Slot equipmentSlot, Inventory_Slot inventorySlot)
+    public void SwapEquipmentAndInventory(Equipment_Slot equipmentSlot, Inventory_Slot inventorySlot)
     {
         Item tempEquipSlotItem = equipmentManager.WhichItemInSlot(equipmentSlot);
         Item tempInventoryItem = inventoryManager.FindItemInSlot(inventorySlot);
@@ -268,14 +268,13 @@ public class UI_Inventory_Manager : MonoBehaviour {
             inventoryManager.AddItemToInventory(tempEquipSlotItem, inventoryManager.WhichInventorySlot(inventorySlot.GetComponentInChildren<InventorySlotIcon>()));
 
             //equipmentManager.UnEquipSlot(equipmentSlot); Was stopping flow of execution, not sure why.
-            print("4762 " + tempInventoryItem + " 00");
-            print("Test");
             equipmentManager.EquipEquipmentInSlot(tempInventoryItem, equipmentSlot); // TODO, Semi cheaty as it does not remove before adding new ones it just overides
         }
         else if(tempInventoryItem == null && tempEquipSlotItem != null)
         {            
             inventoryManager.AddItemToInventory(tempEquipSlotItem, inventoryManager.WhichInventorySlot(inventorySlot.GetComponentInChildren<InventorySlotIcon>()));
             equipmentManager.EquipEquipmentInSlot(tempInventoryItem, equipmentSlot);
+
         }
         else
         {

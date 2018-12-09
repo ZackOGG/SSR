@@ -339,6 +339,31 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
+--- !u!1102 &1102532408238177950
+AnimatorState:
+  serializedVersion: 5
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Skele_Attack_1
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: 19345dcf506904743a7ae8f4be88c0e6, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
 --- !u!1102 &1102752618827744308
 AnimatorState:
   serializedVersion: 5
@@ -419,32 +444,7 @@ AnimatorState:
   m_TimeParameterActive: 0
   m_Motion: {fileID: 7400000, guid: 695825742f16d1e4dbf53bc16faa9a2c, type: 2}
   m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
---- !u!1102 &1102901884658250898
-AnimatorState:
-  serializedVersion: 5
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: Kairin_2HSword_Attack
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions: []
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 961017e4d74706745bfe8bc26df98665, type: 2}
-  m_Tag: 
-  m_SpeedParameter: 
+  m_SpeedParameter: IdleSpeed
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
@@ -464,16 +464,16 @@ AnimatorStateMachine:
     m_Position: {x: 312, y: 24, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102752618827744308}
-    m_Position: {x: 636, y: 132, z: 0}
+    m_Position: {x: 576, y: 120, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102295068044883880}
-    m_Position: {x: 564, y: -24, z: 0}
+    m_Position: {x: 576, y: 24, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102523076249903692}
     m_Position: {x: 864, y: -48, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: 1102901884658250898}
-    m_Position: {x: 168, y: -264, z: 0}
+    m_State: {fileID: 1102532408238177950}
+    m_Position: {x: 570.0295, y: -467.49573, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []

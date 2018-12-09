@@ -26,8 +26,8 @@ namespace SS.Character
         public delegate void Walking(bool amWalking);
         public Walking amWalking;
 
-        public delegate void KnockBack(float force, float duration, Vector3 direction);
-        public KnockBack KnockingBack;
+        //public delegate void KnockBack(float force, float duration, Vector3 direction);
+        //public KnockBack KnockingBack;
 
         public delegate void CallDeath(bool isDead);
         public CallDeath callingDeath;
@@ -49,11 +49,15 @@ namespace SS.Character
         public float GetMovementSpeed() { return movementSpeed; }
         public int GetStrength() { return strength;}
         public float GetJumpPower() { return jumpPower; }
+        public bool GetKnockedBack() { return knockedBack; }
         //public NPCFeelings GetFeelings() { return feelingsToPlayer; }
         private Player_Movement_TwoDSS playerMovement;
         private Animator_Controller animCon;
         private SpriteRenderer spriteRen;
         private Vector2 lastWalkPos;
+        private bool knockedBack = false;
+        private float knockBackTimer;
+        private Rigidbody2D rb;
 
         public Vector2 GetFacingDirection()
         {
@@ -74,20 +78,35 @@ namespace SS.Character
             return direction;
         }
 
+
+        public bool IsPlayer()
+        {
+            return isPlayer;
+        }
+
         //============================
         void Start()
         {
             SetRefrences();
             SetStartingStats();
+            //DetectWalking();
+            StartCoroutine("LateStart");
+
+        }
+
+        IEnumerator LateStart()
+        {
+            yield return new WaitForSeconds(0.2f);
             DetectWalking();
-
-
         }
         private void SetRefrences()
         {
             playerMovement = this.GetComponent<Player_Movement_TwoDSS>();
             animCon = this.GetComponent<Animator_Controller>();
+
             spriteRen = this.GetComponent<SpriteRenderer>();
+            rb = this.GetComponent<Rigidbody2D>();
+            
         }
         private void SetStartingStats()
         {
@@ -114,12 +133,13 @@ namespace SS.Character
 
         }
 
-        public void TakeDamage(int damage)
+        public void TakeDamage(int damage,KnockbackPower knockbackPower)
         {
             if (!invulnerable && !amIDead)
             {
                 health = health - damage;
                 GiveDamageFeedBack();
+                KnockBack(knockbackPower);
             }
             else
             {
@@ -135,15 +155,15 @@ namespace SS.Character
 
         private void GiveDamageFeedBack()
         {
-            
-            spriteRen.color = Color.red;
-
-            StartCoroutine("ChangeColourBack");
+            spriteRen.color = Color.red;            
+            StartCoroutine("ChangeColourBack");            
         }
+        
         IEnumerator ChangeColourBack()
         {
             yield return new WaitForSeconds(0.2f);
             spriteRen.color = Color.white;
+            
         }
 
         private void Die()
@@ -151,11 +171,28 @@ namespace SS.Character
             Destroy(this.gameObject);
         }
         //=====Take Status Affect=====
-   
+
+        private void KnockBack(KnockbackPower knockbackPower)
+        {
+            //TODO Create an offset for knock back in relation to the targets center
+            //StopAllCoroutines();
+            knockedBack = true;
+            knockBackTimer = knockbackPower.duration;
+            rb.velocity = -(new Vector2 (Mathf.Ceil(knockbackPower.direction.x), Mathf.Ceil(knockbackPower.direction.y)).normalized * knockbackPower.force);
+            print(-(new Vector2(Mathf.Ceil(knockbackPower.direction.x), Mathf.Ceil(knockbackPower.direction.y)).normalized * knockbackPower.force));
+            StartCoroutine("KnockBackStop");
+        }
+        IEnumerator KnockBackStop()
+        {
+            yield return new WaitForSeconds(knockBackTimer);
+            rb.velocity = Vector3.zero;
+            knockedBack = false;
+        }
+
         public void KockBack(float force, float duration, Vector3 direction)
         {
             print("Knocking back");
-            KnockingBack(force, duration, direction);
+            //KnockingBack(force, duration, direction);
         }
         //============================
 
@@ -166,7 +203,7 @@ namespace SS.Character
         }
         IEnumerator CheckWalking()
         {
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.1f); // TODO WORK ON REDUCING FOR CLEANER ANIM STOP
             Vector2 currentPos = this.transform.position;
             if (currentPos == lastWalkPos)
             {

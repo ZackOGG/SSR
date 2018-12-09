@@ -13,8 +13,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Grate Axe
   icon: {fileID: 21300000, guid: 74bfdafe998739d4e936114277045f34, type: 3}
-  itemType: 1
+  itemType: 2
   weapon: {fileID: 11400000, guid: e1287462ccde9f74085d14cd2880c425, type: 2}
+  equipmentSlotType: 1
+  bodyArmour: {fileID: 0}
   value:
     Gold: 1
     Silver: 0

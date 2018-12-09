@@ -9,8 +9,8 @@ namespace SS.Character
         [SerializeField] float halfJumpPower;
 
         private float movementSpeed = 5f;
-        private float jumpPower = 5f;
-
+        private float jumpPower = 15f;
+        private Follow_Mouse followMouse;
         private Rigidbody2D rb;
         private Character_Stats characterStats;
         public bool grounded = true;
@@ -18,8 +18,7 @@ namespace SS.Character
         private bool moveInput;
         private bool knockedBack = false;
         private float knockBackTimer;
-        private Animator_Controller animCon;
-        private Combat_Controller combatCon;
+        private Animator_Controller animCon;        
         private CapsuleCollider2D hitBox;
         public bool isPlatform;
         private GameObject player;
@@ -42,12 +41,12 @@ namespace SS.Character
         {
             rb = this.GetComponent<Rigidbody2D>();
             characterStats = this.GetComponent<Character_Stats>();
-            animCon = this.GetComponent<Animator_Controller>();
-            combatCon = this.GetComponentInChildren<Combat_Controller>();
+            animCon = this.GetComponent<Animator_Controller>();            
             hitBox = this.GetComponent<CapsuleCollider2D>();
-            characterStats.KnockingBack += KnockBack;
+            //characterStats.KnockingBack += KnockBack;
             characterStats.callingDeath += SetDead;
             player = characterStats.gameObject;
+            followMouse = GameObject.FindObjectOfType<Follow_Mouse>();
         }
         //=====Getters and Setters=====
         private void SetStats()
@@ -70,6 +69,7 @@ namespace SS.Character
                 ProcessJump();
                 ProcessHalfJump();
                 ProcessFallThroughPlatform();
+                ProcessLookDirection();
             }
             else
             {
@@ -82,24 +82,26 @@ namespace SS.Character
         //=====Movement=====
         private void ProcessHorizontalMovement()
         {
-            float h = Input.GetAxis("Horizontal");
+            if (!characterStats.GetKnockedBack())
+            {
+                float h = Input.GetAxis("Horizontal");
 
-            rb.velocity = new Vector2(h * movementSpeed, rb.velocity.y);
-            if (Input.GetKey(KeyCode.D)) //TODO DETECT THE DIRECTION
-            {
-                FaceRight();
-                moveInput = true;
+                rb.velocity = new Vector2(h * movementSpeed, rb.velocity.y);
+                if (Input.GetKey(KeyCode.D)) //TODO DETECT THE DIRECTION
+                {
+                    //FaceRight();
+                    moveInput = true;
+                }
+                else if (Input.GetKey(KeyCode.A))
+                {
+                    //FaceLeft();
+                    moveInput = true;
+                }
+                else
+                {
+                    moveInput = false;
+                }
             }
-            else if (Input.GetKey(KeyCode.A))
-            {
-                FaceLeft();
-                moveInput = true;
-            }
-            else
-            {
-                moveInput = false;
-            }
-
         }
 
         private void ProcessJump()
@@ -126,6 +128,21 @@ namespace SS.Character
             }
         }
        
+        private void ProcessLookDirection()
+        {
+            Vector2 mousePos = followMouse.GetPositionVTwo();
+            Vector2 thisPos = this.transform.position;
+            Vector2 direction = mousePos - thisPos;
+
+            if(direction.x >0)
+            {
+                FaceRight();
+            }
+            if(direction.x < 0)
+            {
+                FaceLeft();
+            }
+        }
 
         //========================
 
@@ -151,7 +168,7 @@ namespace SS.Character
 
         }
 
-        private void KnockBack(float force, float duration, Vector3 direction)
+        /*private void KnockBack(float force, float duration, Vector3 direction)
         {
             StopAllCoroutines();
             knockedBack = true;
@@ -166,7 +183,7 @@ namespace SS.Character
             yield return new WaitForSeconds(knockBackTimer);
             //rb.velocity = Vector3.zero;
             knockedBack = false;
-        }
+        }*/
         //=====Direction Facing=====
         private void FaceRight()
         {

@@ -24,6 +24,16 @@ namespace SS.AI
         public float GetAgroRange() { return agroRange; }
         public GameObject GetTarget() { return target; }
 
+        private Character_Stats characterStats;
+        private bool dead;
+        private void SetDead(bool newbool) { dead = newbool; }
+
+        private void SetNoTarget()
+        {            
+            aICombat.SetTarget(null);
+            target = null;
+
+        }
         //=============================
         
         // Use this for initialization
@@ -46,6 +56,9 @@ namespace SS.AI
         {
             wayPointSrpt = this.GetComponent<NPC_Waypoint>();
             aICombat = this.GetComponent<AI_Combat_Standard>();
+            characterStats = this.GetComponent<Character_Stats>();
+
+            characterStats.callingDeath += SetDead;
         }
         private void SetHordeMode()
         {
@@ -59,14 +72,21 @@ namespace SS.AI
         // Update is called once per frame
         void Update()
         {
-            if(!target)
+            if (!dead)
             {
-                DetectEnemy();
+                if (!target)
+                {
+                    DetectEnemy();
+                }
+
+                if (!hordeMode && target)
+                {
+                    InAgroRange();
+                }
             }
-            
-            if(!hordeMode && target)
+            else
             {
-                InAgroRange();
+                TurnOffScripts();
             }
 
 
@@ -107,6 +127,7 @@ namespace SS.AI
             {
                 if (!patrolling)
                 {
+                    SetNoTarget();
                     Patrol();
                 }
             }

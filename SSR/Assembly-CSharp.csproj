@@ -70,7 +70,7 @@
     <Compile Include="Assets\_UI\Shop_UI_Manager.cs" />
     <Compile Include="Assets\_UI\UI_Controller.cs" />
     <Compile Include="Assets\_UI\UI_Inventory_Manager.cs" />
-    <Compile Include="Assets\Armour_Controller.cs" />
+    <Compile Include="Assets\AI_Animator_Controller.cs" />
     <Compile Include="Assets\Characters\AI_Movement.cs" />
     <Compile Include="Assets\Characters\Animator_Controller.cs" />
     <Compile Include="Assets\Characters\BodyDamage.cs" />
@@ -79,10 +79,10 @@
     <Compile Include="Assets\Characters\Inventory.cs" />
     <Compile Include="Assets\Characters\Inventory_Slot.cs" />
     <Compile Include="Assets\Characters\NPC\Enemy\AI_Brain.cs" />
+    <Compile Include="Assets\Characters\NPC\Enemy\AI_Combat_Controller.cs" />
     <Compile Include="Assets\Characters\NPC\Enemy\AI_Combat_Standard.cs" />
     <Compile Include="Assets\Characters\NPC\Enemy\JumpNeedDetector.cs" />
     <Compile Include="Assets\Characters\NPC\Enemy\NPC_Waypoint.cs" />
-    <Compile Include="Assets\Characters\Player\Combat_Controller.cs" />
     <Compile Include="Assets\Characters\Player\Jitter.cs" />
     <Compile Include="Assets\Characters\Player\JumpUpDetector.cs" />
     <Compile Include="Assets\Characters\Player\Land_Detector.cs" />
@@ -95,6 +95,7 @@
     <Compile Include="Assets\Characters\Zarok\Zarok_Battle_Controller.cs" />
     <Compile Include="Assets\Enviroment\Door\Door_Controller.cs" />
     <Compile Include="Assets\Equipment\Armour.cs" />
+    <Compile Include="Assets\Equipment\Armour_Controller.cs" />
     <Compile Include="Assets\Equipment\Item.cs" />
     <Compile Include="Assets\Equipment\Weapon_Controller.cs" />
     <Compile Include="Assets\Equipment\Weapons\Projectile.cs" />

@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Name: Wep_2HSword_1
   m_EditorClassIdentifier: 
   hitBox: {fileID: 60669890587667330, guid: 147e70dca69bbdf42ab78c55976bf74f, type: 2}
+  thisItem: {fileID: 11400000, guid: 450825ed62bca834c961839a04af8d00, type: 2}
   damage: 5
-  attackSpeed: 0.65
+  attackSpeed: 1
+  knockBackPower: 8
   idle: {fileID: 7400000, guid: 2a2da1756bf929b49b8f70eee34f5a62, type: 2}
   walking: {fileID: 7400000, guid: 398c7d679ab344f4c8ff8133f174a163, type: 2}
   attackOne: {fileID: 7400000, guid: 8ef068fe8102d9444bc5bc506c793a51, type: 2}

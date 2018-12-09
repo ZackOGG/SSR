@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 840214e6cf2ba34498070ba5ed2cb72f, type: 3}
+  m_Name: Plate_BArmour
+  m_EditorClassIdentifier: 
+  thisItem: {fileID: 11400000, guid: ad2f61969308b7c4f8a91dbbb9c2ea6e, type: 2}
+  currenWeapon: {fileID: 0}
+  defense: 0
+  idleBase: {fileID: 7400000, guid: 6cca4ef1494b7744da3f4c26d16b5773, type: 2}
+  walkingBase: {fileID: 7400000, guid: e6e715824e0df2c43982e3721cbdc9ab, type: 2}
+  attackBase: {fileID: 7400000, guid: 37919b6ccee8d0f488137af7f8aaebd9, type: 2}
+  idleTwoHandedSword: {fileID: 7400000, guid: 6cca4ef1494b7744da3f4c26d16b5773, type: 2}
+  walkingTwoHandedSword: {fileID: 7400000, guid: 373d82c946cd3b14794ec2a88e10db8c,
+    type: 2}
+  swordAttackOne: {fileID: 7400000, guid: e3c3f4457a3799945a01a087956317c0, type: 2}
+  idleTwoHandedAxe: {fileID: 7400000, guid: 6fe2fe58368de804c8517b646d6cadf1, type: 2}
+  walkingTwoHandedAxe: {fileID: 7400000, guid: 13a0a9cf8daad9e43878a7fd60d1d024, type: 2}
+  axeAttackOne: {fileID: 7400000, guid: 8fc3e1ffbb1d7ed4f9db5f118f2aca3d, type: 2}

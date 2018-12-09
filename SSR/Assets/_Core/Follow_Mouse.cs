@@ -7,6 +7,11 @@ public class Follow_Mouse : MonoBehaviour {
 	[SerializeField] static Vector3 mousePosision;
     public static GameObject theMouseCursor;
 
+    public Vector2 GetPositionVTwo()
+    {
+        return transform.position;
+    }
+
     // Update is called once per frame
     private void Start()
     {

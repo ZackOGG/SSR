@@ -13,8 +13,8 @@ namespace SS.Equipment
         [SerializeField] Sprite icon;
         [SerializeField] ItemType itemType;
         [SerializeField] Weapons weapon;
-        //[SerializeField] EquipmentSlotType equipmentSlotType;
-        //[SerializeField] Armour bodyArmour;
+        [SerializeField] EquipmentSlotType equipmentSlotType;
+        [SerializeField] Armour bodyArmour;
         //[SerializeField] Armour armor;
         [SerializeField] Money value;
         [Header("Stats")]
@@ -26,9 +26,11 @@ namespace SS.Equipment
         public Sprite GetItemIcon() { return icon; }
         public ItemType GetItemType() { return itemType; }
         public Weapons GetItemWeapon() { return weapon; }
+        public Armour GetItemBodyArmour() { return bodyArmour; }
         public StatType GetStatType() { return statType; }
         public int GetModifier() { return modifier; }
         public Money GetValue() { return value; }
+        public EquipmentSlotType GetEquipmentSlotType() { return equipmentSlotType;  }
         //=============================
         public void Consunme(Character_Stats characterStats)
         {

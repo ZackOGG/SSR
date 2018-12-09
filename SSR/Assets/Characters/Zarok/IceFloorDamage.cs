@@ -39,8 +39,8 @@ public class IceFloorDamage : MonoBehaviour {
     {
         if (targetsStats)
         {
-            targetsStats.KnockingBack(20f, 0.25f, -Vector3.up); //TODO CHANGE HARD CODE OF KNOCK BACK
-            targetsStats.TakeDamage(damage);
+            //targetsStats.KnockingBack(20f, 0.25f, -Vector3.up); //TODO CHANGE HARD CODE OF KNOCK BACK
+            //targetsStats.TakeDamage(damage);
         }
 
     }

@@ -64,10 +64,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 2
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -77,12 +77,12 @@ TextureImporter:
     buildTarget: Standalone
     maxTextureSize: 1024
     resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
+    textureFormat: 4
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 0
+    overridden: 1
     androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
@@ -93,8 +93,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
+        width: 64
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -102,7 +102,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0c6a1ca8f15d30448b1da37b56af0f7b
+      spriteID: 4c780b660ce66e543ba9e3ca568fa7dc
       vertices: []
       indices: 
       edges: []
@@ -111,10 +111,10 @@ TextureImporter:
       name: Kairin2hAxe1(Idle)_1
       rect:
         serializedVersion: 2
-        x: 32
+        x: 64
         y: 0
-        width: 32
-        height: 32
+        width: 64
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -122,7 +122,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 04e2f8720659d024190c90431f76044c
+      spriteID: 53f8516757955084fade6862622c2ed2
       vertices: []
       indices: 
       edges: []
@@ -131,10 +131,10 @@ TextureImporter:
       name: Kairin2hAxe1(Idle)_2
       rect:
         serializedVersion: 2
-        x: 64
+        x: 128
         y: 0
-        width: 32
-        height: 32
+        width: 64
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -142,7 +142,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1c47ca35d0468384ba16f3701b38643e
+      spriteID: 49cd14d32c1a37f47b2b51fb62209e8d
       vertices: []
       indices: 
       edges: []
@@ -151,10 +151,10 @@ TextureImporter:
       name: Kairin2hAxe1(Idle)_3
       rect:
         serializedVersion: 2
-        x: 96
+        x: 192
         y: 0
-        width: 32
-        height: 32
+        width: 64
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -162,7 +162,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 53bf742f70cb54a4d8d2e44bb978c0fa
+      spriteID: 285c83f7e33532e4b8629b6c59ce3c94
       vertices: []
       indices: 
       edges: []
@@ -171,10 +171,10 @@ TextureImporter:
       name: Kairin2hAxe1(Idle)_4
       rect:
         serializedVersion: 2
-        x: 128
+        x: 256
         y: 0
-        width: 32
-        height: 32
+        width: 64
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -182,7 +182,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 186703b5ecd6ba14a9274a02a675ec27
+      spriteID: a2fa9db72cf9a4743b79d69f6c9cff1e
       vertices: []
       indices: 
       edges: []
@@ -191,10 +191,10 @@ TextureImporter:
       name: Kairin2hAxe1(Idle)_5
       rect:
         serializedVersion: 2
-        x: 160
+        x: 320
         y: 0
-        width: 32
-        height: 32
+        width: 64
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -202,7 +202,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4ed291ff5330658499eb0126b81a63b9
+      spriteID: acc3a2514b3484c419e8df994c76aa11
       vertices: []
       indices: 
       edges: []
@@ -210,7 +210,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 763c4f685665b8e42912f2ff3b2a63bc
+    spriteID: c1013692459a13e44b157e2297e2e17f
     vertices: []
     indices: 
     edges: []

@@ -11,15 +11,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fcb680d3119ee54a9526de05fd2ba95, type: 3}
   m_Name: Item_Plate_BArmour
   m_EditorClassIdentifier: 
-  itemName: 
-  icon: {fileID: 0}
-  itemType: 0
+  itemName: Plate Body Armour
+  icon: {fileID: 21300000, guid: 71cd7271bd60a3548bf8f76863a00c17, type: 3}
+  itemType: 3
   weapon: {fileID: 0}
   equipmentSlotType: 2
-  bodyArmour: {fileID: 0}
+  bodyArmour: {fileID: 11400000, guid: 0f75b266ebd876d47bf4e2456911b91d, type: 2}
   value:
-    Gold: 0
+    Gold: 200
     Silver: 0
     Copper: 0
-  statType: 0
+  statType: 1
   modifier: 0

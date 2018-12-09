@@ -15,6 +15,8 @@ namespace SS.AI
         private Character_Stats characterStats;
         public float jumpPower;
 
+        private AI_Brain aIBrain;
+
         //=====Getters and Setters=====
         public void SetMoveLeft(bool keepMovingLeft) { moveLeft = keepMovingLeft; }
         
@@ -33,6 +35,7 @@ namespace SS.AI
         {
             rb = this.GetComponent<Rigidbody2D>();
             characterStats = this.GetComponent<Character_Stats>();
+            aIBrain = this.GetComponent<AI_Brain>();
         }
         private void SetStats()
         {
@@ -48,16 +51,22 @@ namespace SS.AI
 
         private void ProcessHorizontalMovement()
         {
-            movementSpeed = characterStats.GetMovementSpeed();
-            if (moveLeft) //TODO DETECT THE DIRECTION
-            {               
-                rb.velocity = new Vector2(-movementSpeed, rb.velocity.y);
-                ChangeLookDirectionToLeft(true);
-            }
-            else
+            if (!characterStats.GetKnockedBack())
             {
-                rb.velocity = new Vector2(movementSpeed, rb.velocity.y);
-                ChangeLookDirectionToLeft(false);                
+                movementSpeed = characterStats.GetMovementSpeed();
+                if (aIBrain.GetTarget() != null)
+                {
+                    if (moveLeft) //TODO DETECT THE DIRECTION
+                    {
+                        rb.velocity = new Vector2(-movementSpeed, rb.velocity.y);
+                        ChangeLookDirectionToLeft(true);
+                    }
+                    else
+                    {
+                        rb.velocity = new Vector2(movementSpeed, rb.velocity.y);
+                        ChangeLookDirectionToLeft(false);
+                    }
+                }
             }
         }
         public void ProcessJump()
@@ -91,6 +100,10 @@ namespace SS.AI
 
                 grounded = true;
             }
+        }
+        private void StantIdle()
+        {
+
         }
         
     }

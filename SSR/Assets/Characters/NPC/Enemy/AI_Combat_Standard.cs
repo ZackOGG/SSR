@@ -4,18 +4,28 @@ using UnityEngine;
 using SS.Character;
 using System;
 
+/*
+ This script is for standard attack pattens.
+ What it Does
+    1.It will walk towards the target
+    2.It will detect which direction the target is and change diraction acordingly
+    3.If it is in range of the target it will tell the Combat Controller to attack
+What it does not do
+    1.Run any kind of damage calcualtions
+    2.Deal damage
+ */
 namespace SS.AI
 {
     public class AI_Combat_Standard : MonoBehaviour
     {
         [Header("Combat Stats")]
         [SerializeField] float attackRange = 2f;
-        [SerializeField] float atemptAttackTime = 2f; // This is the ai at when it should attack
+        //[SerializeField] float atemptAttackTime = 2f; // This is the ai at when it should attack
 
         private float attackSpeed;        
         private float attackTimer;
         private float aATr; 
-        private Animator_Controller animCon;        
+        public AI_Animator_Controller aIAnimCon;        
         public GameObject target;
         public void SetTarget(GameObject theTarget) { target = theTarget; }
         private float agroRange;
@@ -25,8 +35,9 @@ namespace SS.AI
         private float movementSpeed = 5f;
         private Character_Stats characterStats;
         private Rigidbody2D rb;
-        private Combat_Controller combatCon;
+        private AI_Combat_Controller combatCon;
         private AI_Movement aIMovement;
+        private Weapon_Controller wepCon;
         // Use this for initialization
         void Start()
         {
@@ -36,13 +47,14 @@ namespace SS.AI
 
         private void SetRefences()
         {
-            animCon = this.GetComponent<Animator_Controller>();
+            aIAnimCon = this.GetComponent<AI_Animator_Controller>();
             aIBrain = this.GetComponent<AI_Brain>();
             attackHitBox = this.GetComponent<PolygonCollider2D>();
             characterStats = this.GetComponent<Character_Stats>();
             rb = this.GetComponent<Rigidbody2D>();
-            combatCon = this.GetComponentInChildren<Combat_Controller>();
+            combatCon = this.GetComponentInChildren<AI_Combat_Controller>();
             aIMovement = this.GetComponent<AI_Movement>();
+            wepCon = this.GetComponentInChildren<Weapon_Controller>();
         }
         private void SetStats()
         {
@@ -50,24 +62,30 @@ namespace SS.AI
             agroRange = aIBrain.GetAgroRange();            
             attackTimer = attackSpeed;
             movementSpeed = characterStats.GetMovementSpeed();
-            aATr = atemptAttackTime;
+            //aATr = atemptAttackTime;
         }
 
         // Update is called once per frame
         void Update()
-        {
-            aATr -= Time.deltaTime;
-
-            if(aATr <= 0 && InAttackRange()) // Starting the attack (atemptAttackTime) after the attack has ended
-            {
-                combatCon.Standard_Attack();
-                aATr = atemptAttackTime + animCon.GetAttackClipLength() / attackSpeed;                
-            }
-
+        {            
+            AttackHandler();
             FollowTarget();           
             DetectTargetDirection();            
         }
       
+        private void AttackHandler()
+        {
+            aATr -= Time.deltaTime;
+
+            if (aATr <= 0 && InAttackRange()) // Starting the attack (atemptAttackTime) after the attack has ended
+            {
+                //combatCon.Standard_Attack();
+                aIAnimCon.callingAttack();
+
+                aATr = aIAnimCon.GetAttackClipLength() / attackSpeed;
+            }
+        }
+
         private void DetectTargetDirection()
         {
             
@@ -120,17 +138,7 @@ namespace SS.AI
                 aIMovement.SetMoveLeft(false);
             }
         }
-        IEnumerator ActivateHitbox()
-        {
-            yield return new WaitForSeconds(1f);
-            attackHitBox.enabled = true;
-            StartCoroutine("DeactivateHitBox");
-        }
-        IEnumerator DeactivateHitBox()
-        {
-            yield return new WaitForSeconds(0.5f);
-            attackHitBox.enabled = false;
-        }
+        
 
         private void OnDrawGizmos()
         {

@@ -14,6 +14,7 @@ namespace SS.Equipment
         [Header("Stats")]
         [SerializeField] int damage = 1;
         [SerializeField] float attackSpeed = 1;
+        [SerializeField] float knockBackPower = 20;
         //[SerializeField] int throwDamageMultiplier = 2;
 
         [Header("Animations")]
@@ -62,6 +63,11 @@ namespace SS.Equipment
         public Item GetItem()
         {
             return thisItem;
+        }
+
+        public float GetKnockbackPower()
+        {
+            return knockBackPower;
         }
         //=============================
 

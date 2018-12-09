@@ -25,7 +25,8 @@ namespace SS.Equipment
         private Transform shopIconParent;
         private Quest_Jornal questJornal;
         private Character_Stats characterStats;
-
+        private Equipment_Manager equipmentManager;
+        private UI_Inventory_Manager uiInventoryManager;
         //=====Money Manager=====
         public void AddMoney(Money amount)
         {
@@ -127,6 +128,8 @@ namespace SS.Equipment
                     Debug.LogError("TWO OR MORE SHOP_ICON_PARENTS DETECTED");
                 }
             }
+            equipmentManager = this.GetComponent<Equipment_Manager>();
+            uiInventoryManager = GameObject.FindObjectOfType<UI_Inventory_Manager>();
         }
         private void SetStartingBagSize()
         {
@@ -387,7 +390,7 @@ namespace SS.Equipment
             return inventoryItems[WhichInventorySlot(slot.GetComponentInChildren<InventorySlotIcon>())];
         }
         public void UseItemAbility(Inventory_Slot slot)
-        {     
+        {
             Item itemToUse = FindItemInSlot(slot);
             if(itemToUse.GetItemType() == ItemType.Consumable)
             {
@@ -395,6 +398,18 @@ namespace SS.Equipment
                 {
                     RemoveItemFromInventory(null, WhichInventorySlot(slot.GetComponentInChildren<InventorySlotIcon>()));
                 }
+            }
+            if(itemToUse.GetEquipmentSlotType() == EquipmentSlotType.RHWeapon) // DO WHEN ADDING NEW SLOTS
+            {
+                Equipment_Slot tempEquipmentSlot = equipmentManager.GetUIRightHand().GetComponent<Equipment_Slot>();
+                Inventory_Slot tempInventorySlot = uIInventorySlotsIcons[FindItemInBagSlot(itemToUse)].GetComponentInParent<Inventory_Slot>();
+                uiInventoryManager.SwapEquipmentAndInventory(tempEquipmentSlot, tempInventorySlot);
+            }
+            if(itemToUse.GetEquipmentSlotType() == EquipmentSlotType.BodyArmour)
+            {
+                Equipment_Slot tempEquipmentSlot = equipmentManager.GetUIBodyArmour().GetComponent<Equipment_Slot>();
+                Inventory_Slot tempInventorySlot = uIInventorySlotsIcons[FindItemInBagSlot(itemToUse)].GetComponentInParent<Inventory_Slot>();
+                uiInventoryManager.SwapEquipmentAndInventory(tempEquipmentSlot, tempInventorySlot);
             }
         }
     }

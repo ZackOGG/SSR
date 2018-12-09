@@ -73,7 +73,7 @@ namespace SS.Equipment
         {
             if (collision.GetComponent<Character_Stats>())
             {
-                collision.GetComponent<Character_Stats>().TakeDamage(damage);
+                //collision.GetComponent<Character_Stats>().TakeDamage(damage);
                 DestroyThis();
             }                
         }

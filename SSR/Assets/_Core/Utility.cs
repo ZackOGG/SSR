@@ -6,10 +6,11 @@ public enum Direction {Up, Down, Left, Right}
 public enum AlignmentToPlayer { Friendly, Neutral, Hostile}
 public enum QuestType {Hunt, Aquire}
 public enum NPCAction {None, Quest, Item, takeQuest, TakeItem, OpenShop}
-public enum ItemType { Consumable, Weapon, Armour}
+public enum ItemType {None, Consumable, Weapon, Armour}
 public enum AttackType { Sword, Axe, Punch}
-public enum EquipmentSlotType { RHWeapon, BodyArmour, Helmet}
+public enum EquipmentSlotType { None, RHWeapon, BodyArmour, Helmet}
 public enum StatType { Strength, Health }
+
 
 namespace SS.Quests
 {
@@ -97,4 +98,11 @@ public struct Money
     public int Gold;
     public int Silver;
     public int Copper;
+}
+
+public struct KnockbackPower
+{
+    public float force;
+    public float duration;
+    public Vector2 direction;
 }

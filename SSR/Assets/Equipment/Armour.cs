@@ -14,20 +14,36 @@ namespace SS.Equipment
         [SerializeField] int defense;
 
         [Header("Animations")]
+        [Header("Base")]
         [SerializeField] AnimationClip idleBase;
-        [SerializeField] AnimationClip idleTwoHandedSword;
-        [SerializeField] AnimationClip idleTwoHandedAxe;
         [SerializeField] AnimationClip walkingBase;
+        [SerializeField] AnimationClip attackBase;
+
+        [Header("2HSword")]
+        [SerializeField] AnimationClip idleTwoHandedSword;
         [SerializeField] AnimationClip walkingTwoHandedSword;
-        [SerializeField] AnimationClip walkingTwoHandedAxe;
-        [SerializeField] AnimationClip swordAttackOne;    
+        [SerializeField] AnimationClip swordAttackOne;
+
+        [Header("2HAxe")]
+        [SerializeField] AnimationClip idleTwoHandedAxe;
+        [SerializeField] AnimationClip walkingTwoHandedAxe;           
         [SerializeField] AnimationClip axeAttackOne;
 
         //=====Getters and Setters=====
-        //public Item GetItem() { return thisItem; }
-
-        //=============================
-
+        public Item GetItem() { return thisItem; }
+        //=====Animation Base=====
+        public AnimationClip GetWalkingBase() { return walkingBase; }
+        public AnimationClip GetIdleBase() { return idleBase; }
+        public AnimationClip GetAttackBase() { return attackBase; }
+        //=====Animation Sword=====
+        public AnimationClip GetWalkingSword() { return walkingTwoHandedSword; }
+        public AnimationClip GetIdleSword() { return idleTwoHandedSword; }
+        public AnimationClip GetSwordAttackOne() { return swordAttackOne; }
+        //=====Animation Axe=====
+        public AnimationClip GetWalkingAxe() { return walkingTwoHandedAxe; }
+        public AnimationClip GetIdleAxe() { return idleTwoHandedAxe; }
+        public AnimationClip GetAxeAttackOne() { return axeAttackOne; }
+        //========================
         // Use this for initialization
         void Start()
         {
