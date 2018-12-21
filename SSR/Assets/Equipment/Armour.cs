@@ -11,7 +11,8 @@ namespace SS.Equipment
         [SerializeField] Weapons currenWeapon;
 
         [Header("Stats")]
-        [SerializeField] int defense;
+        [SerializeField] int physicalResistance;
+        [SerializeField] int magicalResistance;
 
         [Header("Animations")]
         [Header("Base")]
@@ -31,6 +32,8 @@ namespace SS.Equipment
 
         //=====Getters and Setters=====
         public Item GetItem() { return thisItem; }
+        public int GetPhysicalResistance() { return physicalResistance; }
+        public int GetMagicalResistance() { return magicalResistance; }
         //=====Animation Base=====
         public AnimationClip GetWalkingBase() { return walkingBase; }
         public AnimationClip GetIdleBase() { return idleBase; }

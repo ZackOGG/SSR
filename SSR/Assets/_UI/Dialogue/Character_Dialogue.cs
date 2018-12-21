@@ -13,12 +13,13 @@ namespace SS.UI
         private float talkRadius = 1.2f;
         [SerializeField] string nPCName;
         [SerializeField] Dialouge[] sentances;
-        private int currentSelfSwitch;
+        public int currentSelfSwitch;
         private GameObject player;
         private Dialogue_Manager dialogueManger;
         private bool talkingToThisNPC = false;
         private int currentDialougeState = 0;
         private Inventory playersInventory;
+        private int newSelfSwitch;
 
         private void Start()
         {            
@@ -72,6 +73,8 @@ namespace SS.UI
         }
         private void StopDialogue()
         {
+            print("Test2");
+            currentSelfSwitch = newSelfSwitch;
             talkingToThisNPC = false;
             currentDialougeState = 0;
             dialogueManger.CloseDialogueBox();
@@ -101,6 +104,7 @@ namespace SS.UI
             if (sentances[currentSelfSwitch].dialogue[theDialogueID].nPCAction == NPCAction.Item) // Give item to player
             {
                 playersInventory.AddItemToInventory(sentances[currentSelfSwitch].dialogue[theDialogueID].theItemToGiveOrTake, -1);
+                SetNewSelfSwitch(sentances[currentSelfSwitch].dialogue[theDialogueID].selfSwitchToSwitchTo);
 
                 //TODO ADD IF BAG IS FULL SOMTHING EG DROP
             }
@@ -111,6 +115,7 @@ namespace SS.UI
             if (sentances[currentSelfSwitch].dialogue[theDialogueID].nPCAction == NPCAction.Quest) // Gives player a new quest
             {
                 player.GetComponent<Quest_Jornal>().AddNewQuest(sentances[currentSelfSwitch].dialogue[theDialogueID].theQuestToGiveOrTake);
+                SetNewSelfSwitch(sentances[currentSelfSwitch].dialogue[theDialogueID].selfSwitchToSwitchTo);
             }
             if (sentances[currentSelfSwitch].dialogue[theDialogueID].nPCAction == NPCAction.takeQuest) // Checks to see if the quest is complete
             {
@@ -136,11 +141,16 @@ namespace SS.UI
             
             if (sentances[currentSelfSwitch].dialogue[theDialogueID].selfSwitchToSwitchTo > 0) // Checks to selfswitch
             {
-                currentSelfSwitch = sentances[currentSelfSwitch].dialogue[theDialogueID].selfSwitchToSwitchTo;
-                StopDialogue();
+                //currentSelfSwitch = sentances[currentSelfSwitch].dialogue[theDialogueID].selfSwitchToSwitchTo;
+                //StopDialogue();
             }           
             
             
+        }
+        private void SetNewSelfSwitch(int selfSwitch)
+        {
+            print("Test");
+            newSelfSwitch = selfSwitch;
         }
 
         //=====Answers=====

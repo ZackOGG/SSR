@@ -26,7 +26,7 @@ namespace SS.Character
         private void OnTriggerEnter2D(Collider2D collision)
         {
 
-            if (this.gameObject.tag == "JumpUpBox" && collision.gameObject.tag == "Platform")
+            if (this.gameObject.tag == "JumpUpBox" && collision.gameObject.tag == "Ground")
             {
                 StartCoroutine("HitBoxOffOn");
                 

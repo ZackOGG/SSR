@@ -216,7 +216,6 @@ namespace SS.Character
         }
         private void SetAnimsToAttack()
         {
-            print("Attacking");
             BodyAttackAnim();
             weaponAnim.SetTrigger("Attack");
             armourAnim.SetTrigger("Attack");

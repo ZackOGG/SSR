@@ -19,6 +19,8 @@ namespace SS.Equipment
         [SerializeField] Transform uIItventorySlotParent;
         [SerializeField] Item startingItem;
         [SerializeField] Item startingItemTwo;
+        [SerializeField] Item startingItemThree;
+        [SerializeField] Item startingItemFour;
         public Image[] uIInventorySlotsIcons;
         public Image[] uiShopSlotIcons;
 
@@ -30,16 +32,9 @@ namespace SS.Equipment
         //=====Money Manager=====
         public void AddMoney(Money amount)
         {
-            print("Test1");
-            print(amount.Gold);
-            print(amount.Silver);
-            print(amount.Copper);
             money.Copper += amount.Copper;
             money.Silver += amount.Silver;
             money.Gold += amount.Gold;
-            print(money.Gold);
-            print(money.Silver);
-            print(money.Copper);
 
             if (money.Copper > 99)
             {
@@ -112,8 +107,15 @@ namespace SS.Equipment
             {
                 GetShopUISlotsIcons();
             }
+            AddStartingItems();
+            
+        }
+        private void AddStartingItems()
+        {
             AddItemToInventory(startingItem, -1);
             AddItemToInventory(startingItemTwo, -1);
+            AddItemToInventory(startingItemThree, -1);
+            AddItemToInventory(startingItemFour, -1);
         }
         private void SetRefrences()
         {

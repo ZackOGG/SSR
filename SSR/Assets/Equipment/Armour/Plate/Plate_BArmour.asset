@@ -13,7 +13,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thisItem: {fileID: 11400000, guid: ad2f61969308b7c4f8a91dbbb9c2ea6e, type: 2}
   currenWeapon: {fileID: 0}
-  defense: 0
+  physicalResistance: 2
+  magicalResistance: 1
   idleBase: {fileID: 7400000, guid: 6cca4ef1494b7744da3f4c26d16b5773, type: 2}
   walkingBase: {fileID: 7400000, guid: e6e715824e0df2c43982e3721cbdc9ab, type: 2}
   attackBase: {fileID: 7400000, guid: 37919b6ccee8d0f488137af7f8aaebd9, type: 2}

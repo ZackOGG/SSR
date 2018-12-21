@@ -8,6 +8,7 @@ namespace SS.Character
     {
         [SerializeField] float halfJumpPower;
 
+        private bool cantMove = false;
         private float movementSpeed = 5f;
         private float jumpPower = 15f;
         private Follow_Mouse followMouse;
@@ -24,6 +25,7 @@ namespace SS.Character
         private GameObject player;
         public bool dead = false;
         public void SetDead(bool newBool) { dead = newBool; }
+        public void SetCantMove(bool newBool) { cantMove = newBool; }
 
         // Use this for initialization
         void Start()
@@ -62,7 +64,7 @@ namespace SS.Character
         // Update is called once per frame
         void Update()
         {
-            if(!dead)
+            if(!dead && !cantMove)
             {
                 ProcessHorizontalMovement();
                 //ProcessCrouch();            

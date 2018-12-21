@@ -13,9 +13,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitBox: {fileID: 60669890587667330, guid: f23df6c4054c34b4b9f163f5254e3698, type: 2}
   thisItem: {fileID: 0}
-  damage: 2
+  physicalDamage: 3
+  magicalDamage: 0
   attackSpeed: 1
-  knockBackPower: 20
+  knockBackPower: 12.5
   idle: {fileID: 0}
   walking: {fileID: 0}
   attackOne: {fileID: 7400000, guid: 8548f74a1326b5e4d8873620f5d0b0a5, type: 2}

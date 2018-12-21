@@ -75,10 +75,7 @@ namespace SS.AI
         // Update is called once per frame
         void Update()
         {
-            if(Input.GetKeyDown(KeyCode.T))
-            {
-                callingAttack();
-            }
+           
         }
         private void AmIWalking(bool newBool)
         {

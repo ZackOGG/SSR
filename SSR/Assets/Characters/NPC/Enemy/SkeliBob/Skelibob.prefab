@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 114415212417158528}
   - component: {fileID: 114075160713434864}
   - component: {fileID: 114811717721312410}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Weapon AI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68,6 +68,7 @@ GameObject:
   - component: {fileID: 114856251313302006}
   - component: {fileID: 114212272735917142}
   - component: {fileID: 114920765386202956}
+  - component: {fileID: 114702359645836962}
   m_Layer: 10
   m_Name: Skelibob
   m_TagString: Enemy
@@ -75,23 +76,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1529670196697136
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4143980923152012}
-  - component: {fileID: 61037012069654296}
-  - component: {fileID: 114385517175675758}
-  m_Layer: 10
-  m_Name: LandHitbox
-  m_TagString: TurnOnColliderHitBox
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
 --- !u!1 &1954699554129194
 GameObject:
   m_ObjectHideFlags: 0
@@ -101,14 +85,14 @@ GameObject:
   m_Component:
   - component: {fileID: 4718877074151558}
   - component: {fileID: 61513109233507808}
-  - component: {fileID: 114614691805415896}
+  - component: {fileID: 114172897701059668}
   m_Layer: 10
   m_Name: JumpUp HitBox
   m_TagString: JumpUpBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4034205193231342
 Transform:
   m_ObjectHideFlags: 1
@@ -122,19 +106,6 @@ Transform:
   m_Father: {fileID: 4802720019572454}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4143980923152012
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1529670196697136}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.505, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4802720019572454}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4718877074151558
 Transform:
   m_ObjectHideFlags: 1
@@ -142,7 +113,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1954699554129194}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.5049999, z: 0}
+  m_LocalPosition: {x: 0, y: -0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4802720019572454}
@@ -155,13 +126,12 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1296089494754974}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -74.02681, y: -2.9088387, z: 0}
+  m_LocalPosition: {x: -90.48, y: -4.082, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4034205193231342}
   - {fileID: 4922230137294952}
   - {fileID: 4718877074151558}
-  - {fileID: 4143980923152012}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -213,7 +183,7 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.38, y: 0.5}
     oldSize: {x: 2, y: 2}
     newSize: {x: 4, y: 3}
     adaptiveTilingThreshold: 0.5
@@ -258,31 +228,6 @@ PolygonCollider2D:
       - {x: 0.79919434, y: -0.24776855}
       - {x: 1.096878, y: -0.03056708}
       - {x: 1.0200119, y: 0.10404906}
---- !u!61 &61037012069654296
-BoxCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1529670196697136}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.8}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.25534648, y: 0.07660365}
-  m_EdgeRadius: 0
 --- !u!61 &61513109233507808
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -295,7 +240,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.9396261}
+  m_Offset: {x: 0.24, y: 0.46}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -306,7 +251,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.400979, y: 0.034979105}
+  m_Size: {x: 0.73, y: 0.034979105}
   m_EdgeRadius: 0
 --- !u!70 &70319456946455932
 CapsuleCollider2D:
@@ -320,8 +265,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.5}
-  m_Size: {x: 0.4, y: 1.49}
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.73, y: 1.82}
   m_Direction: 0
 --- !u!95 &95107319699176482
 Animator:
@@ -332,7 +277,7 @@ Animator:
   m_GameObject: {fileID: 1296089494754974}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7fa3a3d68a0518343be08fe5615ee140, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -388,10 +333,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62b6c9f2d7cec3d48a6e4d2501888901, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agroRange: 8
+  agroRange: 12
   hordeMode: 0
   inCombat: 0
-  patrolling: 1
+  patrolling: 0
   target: {fileID: 0}
 --- !u!114 &114075160713434864
 MonoBehaviour:
@@ -404,7 +349,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 493c44dfe8dd23940ae2f320fcab1029, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultWeapon: {fileID: 11400000, guid: b0e4c4562eeae3f4e93592aa86e61c5d, type: 2}
+  defaultWeapon: {fileID: 11400000, guid: 426269bec00d6a8479f108397fc187e6, type: 2}
   animOveride: {fileID: 22100000, guid: 5a16eb6d98491f7478669afb2080bcf1, type: 2}
   cloneAnimOveride: {fileID: 0}
   currentWeapon: {fileID: 0}
@@ -420,17 +365,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eec86af2432884d4ca6b4bfe32b57272, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 12
+  maxHealth: 1
   health: 0
   attackSpeed: 1
-  defaultMovementSpeed: 3
-  strength: 4
+  defaultMovementSpeed: 4
+  strength: 0
+  naturalPhysicalArmour: 0
+  naturalMagicalArmour: 0
   weaponDamage: 0
-  jumpPower: 20
+  jumpPower: 10
   cantDie: 0
   invulnerable: 0
   isPlayer: 0
+  attackPointOffSet: {x: -0.2, y: 0.15}
   walking: 0
+--- !u!114 &114172897701059668
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1954699554129194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2069835c9d6e8047ba583aa9c41355a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpRadius: 0
 --- !u!114 &114212272735917142
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -445,17 +405,6 @@ MonoBehaviour:
   attackRange: 1.15
   aIAnimCon: {fileID: 0}
   target: {fileID: 0}
---- !u!114 &114385517175675758
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1529670196697136}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34af9815eb86aa242a2faaa2a3ea4a32, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114415212417158528
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -468,17 +417,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentTrans: {fileID: 0}
---- !u!114 &114614691805415896
+--- !u!114 &114702359645836962
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1954699554129194}
+  m_GameObject: {fileID: 1296089494754974}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b9ba70cd2c19dd4591dc92573fc6d51, type: 3}
+  m_Script: {fileID: 11500000, guid: 2b297e9a07e4b24458d05c9d0dfe6dcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  questID: 1
+  objectiveID: 1
+  amount: 1
+  linkedQuest: {fileID: 11400000, guid: 936e02461e2bb9d48ac302fa12ae29ec, type: 2}
 --- !u!114 &114764768525576434
 MonoBehaviour:
   m_ObjectHideFlags: 1

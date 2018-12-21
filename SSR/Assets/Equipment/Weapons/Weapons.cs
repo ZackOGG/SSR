@@ -12,9 +12,10 @@ namespace SS.Equipment
         [SerializeField] Item thisItem;
 
         [Header("Stats")]
-        [SerializeField] int damage = 1;
+        [SerializeField] int physicalDamage = 1;
+        [SerializeField] int magicalDamage = 0;
         [SerializeField] float attackSpeed = 1;
-        [SerializeField] float knockBackPower = 20;
+        [SerializeField] float knockBackPower = 10;
         //[SerializeField] int throwDamageMultiplier = 2;
 
         [Header("Animations")]
@@ -26,9 +27,13 @@ namespace SS.Equipment
 
              
         //=====Getters and Setters=====
-        public int GetDamage()
+        public int GetPhysicalDamage()
         {
-            return damage;
+            return physicalDamage;
+        }
+        public int GetMagicalDamage()
+        {
+            return magicalDamage;
         }
         public AnimationClip GetWepIdleClip()
         {

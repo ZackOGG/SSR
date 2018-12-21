@@ -11,6 +11,7 @@ TagManager:
   - Waypoints
   - Ground
   - JumpBox
+  - CamController
   layers:
   - Default
   - TransparentFX
@@ -24,7 +25,7 @@ TagManager:
   - Player
   - NPC_Enemy
   - NPC
-  - 
+  - Enviroment
   - 
   - 
   - 
@@ -47,6 +48,9 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Buildings
+    uniqueID: 2224088573
     locked: 0
   - name: Weapon Before Player
     uniqueID: 517818517

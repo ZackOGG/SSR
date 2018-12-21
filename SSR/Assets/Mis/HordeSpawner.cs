@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RPG.Systems
+namespace SS.Systems
 {
     public class HordeSpawner : MonoBehaviour
     {
@@ -32,7 +32,13 @@ namespace RPG.Systems
             }
         }
 
-        public void SpawnMob()
+        public void StartSpawningMobs()
+        {
+            InvokeRepeating("SpawnMob", spawnTimer, spawnTimer);
+        }
+
+
+        private void SpawnMob()
         {
             GameObject theMob = Instantiate(mob, this.transform).gameObject;
             theMob.SetActive(true);

@@ -14,11 +14,18 @@ namespace SS.Character
         [SerializeField] float attackSpeed;        
         [SerializeField] float defaultMovementSpeed;
         [SerializeField] int strength = 1;
-        [SerializeField] int weaponDamage = 1;
+        [SerializeField] int naturalPhysicalArmour;
+        [SerializeField] int naturalMagicalArmour;
+        [SerializeField] int weaponDamage = 0;
         [SerializeField] float jumpPower = 10f;
         [SerializeField] bool cantDie = false;
         [SerializeField] bool invulnerable = false;
         [SerializeField] bool isPlayer = false;
+
+        [Header("Non Stats")]
+        [Tooltip("The attack point is where the attack connects (in relation to the user of the weapon.) EG Peck area")]
+        [SerializeField] Vector2 attackPointOffSet;
+
         //[SerializeField] NPCFeelings feelingsToPlayer = NPCFeelings.Friendly;
         private float movementSpeed = 5f;
         private bool amIDead = false;
@@ -58,6 +65,9 @@ namespace SS.Character
         private bool knockedBack = false;
         private float knockBackTimer;
         private Rigidbody2D rb;
+        private int totalPhysicalArmour;
+        private int totalMagicalArmour;
+        private Equipment_Manager equipmentManager;
 
         public Vector2 GetFacingDirection()
         {
@@ -106,7 +116,10 @@ namespace SS.Character
 
             spriteRen = this.GetComponent<SpriteRenderer>();
             rb = this.GetComponent<Rigidbody2D>();
-            
+            if (IsPlayer())
+            {
+                equipmentManager = this.GetComponent<Equipment_Manager>();
+            }
         }
         private void SetStartingStats()
         {
@@ -123,7 +136,8 @@ namespace SS.Character
             }
             if(health <= 0 && !cantDie)
             {
-                callingDeath(true);
+                //callingDeath(true);
+                Die();
             }
 
             if (health <= 0 && !cantDie && !isPlayer)
@@ -133,11 +147,22 @@ namespace SS.Character
 
         }
 
-        public void TakeDamage(int damage,KnockbackPower knockbackPower)
+        public void TakeDamage(int physicalDamage,int magicalDamage,KnockbackPower knockbackPower)
         {
             if (!invulnerable && !amIDead)
             {
-                health = health - damage;
+                CalculateTotalResistances(); //TODO Make this get called when gear is changed with a deligate
+                int totalPhysicalDamage = physicalDamage - totalPhysicalArmour ;
+                int totalMagicalDamage = magicalDamage - totalMagicalArmour;
+                if(totalPhysicalDamage > 0)
+                {
+                    health = health - totalPhysicalDamage;
+                }
+                if(totalMagicalDamage > 0)
+                {
+                    health = health - totalMagicalDamage;
+                }
+                
                 GiveDamageFeedBack();
                 KnockBack(knockbackPower);
             }
@@ -151,6 +176,21 @@ namespace SS.Character
         public int CalculateDamage()
         {
             return strength + weaponDamage;
+        }
+        public void CalculateTotalResistances()
+        {//TODO CHANGE THIS TO BE CALCULATEDS IN THE EQUIPMENT MANAGER
+            if(IsPlayer() && equipmentManager.GetBodyArmour() != null)
+            {
+                totalPhysicalArmour = naturalPhysicalArmour + equipmentManager.GetBodyArmour().GetPhysicalResistance();
+                totalMagicalArmour = naturalPhysicalArmour + equipmentManager.GetBodyArmour().GetMagicalResistance();
+                
+            }
+            else
+            {
+                totalPhysicalArmour = naturalPhysicalArmour;
+                totalMagicalArmour = naturalMagicalArmour;
+            }
+            
         }
 
         private void GiveDamageFeedBack()
@@ -175,11 +215,12 @@ namespace SS.Character
         private void KnockBack(KnockbackPower knockbackPower)
         {
             //TODO Create an offset for knock back in relation to the targets center
-            //StopAllCoroutines();
+            //StopAllCoroutines();            
             knockedBack = true;
             knockBackTimer = knockbackPower.duration;
-            rb.velocity = -(new Vector2 (Mathf.Ceil(knockbackPower.direction.x), Mathf.Ceil(knockbackPower.direction.y)).normalized * knockbackPower.force);
-            print(-(new Vector2(Mathf.Ceil(knockbackPower.direction.x), Mathf.Ceil(knockbackPower.direction.y)).normalized * knockbackPower.force));
+            rb.velocity = -(knockbackPower.direction * knockbackPower.force);
+            //rb.velocity = -(new Vector2(Mathf.Ceil(knockbackPower.direction.x), Mathf.Ceil(knockbackPower.direction.y)) * knockbackPower.force);
+            //print(-(new Vector2(Mathf.Ceil(knockbackPower.direction.x), Mathf.Ceil(knockbackPower.direction.y))));
             StartCoroutine("KnockBackStop");
         }
         IEnumerator KnockBackStop()
@@ -229,7 +270,21 @@ namespace SS.Character
             return false;
         }
 
+        public Vector2 GetAttackPointOrigin()
+        {
+            Vector2 thisPos = this.transform.position;
+            return (thisPos + attackPointOffSet);
+        }
 
+        private void OnDrawGizmos()
+        {
+            Vector2 thisPos = this.transform.position;
+
+            Gizmos.color = Color.red;
+            Gizmos.DrawSphere(thisPos + attackPointOffSet, 0.1f);
+
+        }
+        
     }
 }
 

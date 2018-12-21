@@ -19,7 +19,7 @@ MonoBehaviour:
   bodyArmour: {fileID: 0}
   value:
     Gold: 0
-    Silver: 5
+    Silver: 50
     Copper: 50
   statType: 0
   modifier: 0

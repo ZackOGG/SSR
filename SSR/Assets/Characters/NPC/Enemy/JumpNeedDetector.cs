@@ -16,7 +16,8 @@ namespace SS.AI
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.tag == "Ground" && this.gameObject.tag == "JumpBox" || collision.gameObject.tag == "Platform" && this.gameObject.tag == "JumpBox")
+            print("Test1");
+            if (collision.tag == "Ground" && this.gameObject.tag == "JumpUpBox" || collision.gameObject.tag == "Platform" && this.gameObject.tag == "JumpBox")
             {
                 print("Hit wall");
                 aIMovement.ProcessJump();

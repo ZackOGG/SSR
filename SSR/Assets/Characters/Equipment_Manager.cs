@@ -34,6 +34,18 @@ namespace SS.Equipment
         //=====Getters and Setters=====
         public GameObject GetUIRightHand() { return uiRightHand; }
         public GameObject GetUIBodyArmour() { return uiBodyArmour; }
+        public Armour GetBodyArmour()
+        {
+            if (bodyArmor)
+            {
+                return bodyArmor.GetItemBodyArmour();
+            }
+            else
+            {
+                return null;
+            }
+            
+        }
 
         private bool isPlayer;
 
@@ -128,6 +140,7 @@ namespace SS.Equipment
             
             UpdateEquipmentUI();
             restartAnimationEvent();
+            
         }
         public void UnEquipRightHand()
         {

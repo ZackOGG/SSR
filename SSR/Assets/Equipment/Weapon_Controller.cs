@@ -43,7 +43,8 @@ namespace SS.Character
         private Character_Stats characterStats;
         private Equipment_Manager equipmentManager;
         private PolygonCollider2D hitBox;
-        private int totalDamage;
+        private int totalPhysicalDamage;
+        private int totalMagicalDamage;
         public bool deltDamage = false;
 
         public float GetWeaponSpeed() { return currentWeapon.GetAttackSpeed(); }
@@ -92,8 +93,7 @@ namespace SS.Character
         // Update is called once per frame
         void Update()
         {
-            //OverrideAnimations();
-            //SetAnimSpeeds();
+
         }
 
         private void Attack()
@@ -102,7 +102,7 @@ namespace SS.Character
             {
                 anim.SetTrigger("Attack");
             }
-
+            
 
         }
         private void Walk(bool newBool)
@@ -123,7 +123,8 @@ namespace SS.Character
         }
         private void CalculateTotalDamage()
         {
-            totalDamage = characterStats.GetStrength() + currentWeapon.GetDamage();
+            totalPhysicalDamage = characterStats.GetStrength() + currentWeapon.GetPhysicalDamage();
+            totalMagicalDamage = currentWeapon.GetMagicalDamage();
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
@@ -143,7 +144,7 @@ namespace SS.Character
         private void DealDamage(Character_Stats targetStats)
         {
             //targetStats.KnockingBack(20f, 0.25f, -Vector3.up);
-            targetStats.TakeDamage(totalDamage, CalculateKnockbackPower(targetStats.transform));
+            targetStats.TakeDamage(totalPhysicalDamage, totalMagicalDamage, CalculateKnockbackPower(targetStats.transform));
         }
 
         private KnockbackPower CalculateKnockbackPower(Transform targetTrans)
@@ -157,10 +158,11 @@ namespace SS.Character
         
         private Vector2 CalculateDirectionToTarget(Transform targetTrans)
         {
-            Vector2 thisPos = this.transform.position;
+            
+            Vector2 thisPos = characterStats.GetAttackPointOrigin();
             Vector2 targetPos = targetTrans.position;
-            Vector2 directionToTarget = (targetPos - thisPos).normalized;
-            return directionToTarget;
+            Vector2 directionToTarget = (targetPos - thisPos);
+            return directionToTarget.normalized;
         }
         
         private void RestartAnimation()
