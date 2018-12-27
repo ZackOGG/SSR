@@ -42,7 +42,7 @@ namespace SS.UI
         }
         public void SetAnswerBTNTText(int theBoxNum, string newString)
         {
-            answerBTNText[theBoxNum].text = newString;
+            answerBTNText[theBoxNum].text = newString; 
         }
         public void EnableDisableBoxes(int amountOfBoxes)
         {
@@ -79,6 +79,11 @@ namespace SS.UI
         public void AnswerFourPressed()
         {
             currentDialogue.AnswerFourPressed();
+        }
+
+        public void AnswerFivePressed()
+        {
+            currentDialogue.AnswerFivePressed();
         }
 
     }

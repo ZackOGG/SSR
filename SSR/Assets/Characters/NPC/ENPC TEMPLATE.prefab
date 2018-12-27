@@ -409,11 +409,14 @@ MonoBehaviour:
   attackSpeed: 1
   defaultMovementSpeed: 3
   strength: 4
+  naturalPhysicalArmour: 0
+  naturalMagicalArmour: 0
   weaponDamage: 0
   jumpPower: 20
   cantDie: 0
   invulnerable: 0
   isPlayer: 0
+  attackPointOffSet: {x: 0, y: 0}
   walking: 0
 --- !u!114 &114201974322243694
 MonoBehaviour:
@@ -426,7 +429,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 493c44dfe8dd23940ae2f320fcab1029, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultAttack: {fileID: 7400000, guid: dce0de58d0d97024fae9542fbfe7229f, type: 2}
   defaultWeapon: {fileID: 11400000, guid: b0e4c4562eeae3f4e93592aa86e61c5d, type: 2}
   animOveride: {fileID: 22100000, guid: 5a16eb6d98491f7478669afb2080bcf1, type: 2}
   cloneAnimOveride: {fileID: 0}
@@ -569,7 +571,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 551113405
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -613,8 +615,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1211050811
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 0cde5814606983d49ad2d6e2f94a32f5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -659,7 +661,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1211050811
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300006, guid: 48d07fc4a50598944ad665b2008024ca, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

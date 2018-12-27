@@ -74,6 +74,7 @@ namespace SS.Systems
             portingCharacterMove.SetCantMove(true);
             yield return new WaitForSeconds(fadeSpeed);
             collidedPlayer.transform.position = destination.transform.position;
+            yield return new WaitForSeconds((fadeSpeed + 0.5f));
             portingCharacterMove.SetCantMove(false);
 
         }

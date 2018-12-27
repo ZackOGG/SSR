@@ -95,9 +95,12 @@ namespace SS.UI
             currentDialougeState = theDialogueID;
             dialogueManger.SetNPCWords(sentances[currentSelfSwitch].dialogue[theDialogueID].sentence);
             int theResponses = 0;
+
             foreach(Response response in sentances[currentSelfSwitch].dialogue[theDialogueID].responces)
             {
+                print(theResponses + " " + response.response);
                 dialogueManger.SetAnswerBTNTText(theResponses, response.response);
+                
                 theResponses++;
             }
             dialogueManger.EnableDisableBoxes(sentances[currentSelfSwitch].dialogue[theDialogueID].responces.Length);
@@ -141,7 +144,8 @@ namespace SS.UI
             
             if (sentances[currentSelfSwitch].dialogue[theDialogueID].selfSwitchToSwitchTo > 0) // Checks to selfswitch
             {
-                //currentSelfSwitch = sentances[currentSelfSwitch].dialogue[theDialogueID].selfSwitchToSwitchTo;
+                SetNewSelfSwitch(sentances[currentSelfSwitch].dialogue[theDialogueID].selfSwitchToSwitchTo);
+                //SetNPCWordsAndAnswers(0);
                 //StopDialogue();
             }           
             
@@ -155,7 +159,7 @@ namespace SS.UI
 
         //=====Answers=====
         public void AnswerOnePressed()
-        {
+        {            
             SetNPCWordsAndAnswers(sentances[currentSelfSwitch].dialogue[currentDialougeState].responces[0].responceNextID);
         }
         public void AnswerTwoPressed()
@@ -169,6 +173,10 @@ namespace SS.UI
         public void AnswerFourPressed()
         {
             SetNPCWordsAndAnswers(sentances[currentSelfSwitch].dialogue[currentDialougeState].responces[3].responceNextID);
+        }
+        public void AnswerFivePressed()
+        {
+            SetNPCWordsAndAnswers(sentances[currentSelfSwitch].dialogue[currentDialougeState].responces[4].responceNextID);
         }
         //=================
 

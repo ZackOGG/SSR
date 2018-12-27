@@ -8,7 +8,7 @@ namespace SS.Character
     {
         [SerializeField] float halfJumpPower;
 
-        private bool cantMove = false;
+        public bool cantMove = false;
         private float movementSpeed = 5f;
         private float jumpPower = 15f;
         private Follow_Mouse followMouse;
